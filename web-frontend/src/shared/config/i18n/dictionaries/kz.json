@@ -1,0 +1,670 @@
+{
+  "pages": {
+    "home": "Басты бет",
+    "signIn": "Кіру",
+    "signUp": "Тіркелу",
+    "resetPassword": "Құпия сөзді қайта орнату",
+    "notFound": "Бет табылмады",
+    "products": "Өнімдер",
+    "staff": "Қызметкерлер",
+    "staffList": "Қызметкерлер тізімі",
+    "editStaff": "Қызметкерді өңдеу",
+    "createStaff": "Қызметкерді қосу",
+    "roles": "Рөлдер",
+    "editRole": "Рөлді өңдеу",
+    "createRole": "Рөлді қосу",
+    "permissions": "Рұқсаттар",
+    "editPermission": "Рұқсатты өңдеу",
+    "createPermission": "Рұқсатты қосу",
+    "departments": "Филиалдар",
+    "editDepartment": "Филиалды өңдеу",
+    "createDepartments": "Филиалды қосу",
+    "patients": "Науқастар",
+    "editPatient": "Науқасты өңдеу",
+    "createPatient": "Науқасты қосу",
+    "appointments": "Жазбалар",
+    "editAppointment": "Жазба өңдеу",
+    "createAppointment": "Жазба қосу",
+    "filials": "Филиалдар",
+    "editFilial": "Филиалды өңдеу",
+    "createFilial": "Филиалды қосу",
+    "expenseCategories": "Шығыстар санаттары",
+    "editExpenseCategory": "Шығыстар санатын өңдеу",
+    "createExpenseCategory": "Шығыстар санатын қосу",
+    "services": "Қызметтер",
+    "editService": "Қызметті өңдеу",
+    "createService": "Қызметті қосу",
+    "expenses": "Шығыстар",
+    "editExpense": "Шығысты өңдеу",
+    "createExpense": "Шығысты қосу",
+    "transactionsHistory": "Қызметтер тарихы",
+    "boxOffice": "Касса",
+    "createBoxOffice": "Науқас туралы мәліметтер",
+    "financialReport": "Касса бойынша есептер",
+    "expenseReport": "Шығындар бойынша есеп",
+    "annualReport": "Жылдық есеп",
+    "visitReport": "Келулер есебі",
+    "settings": "Баптаулар",
+    "profileEdit": "Профильді өңдеу",
+    "specialists": "Мамандар",
+    "editSpecialist": "Мамандарды өңдеу",
+    "createSpecialist": "Маманды қабылдау",
+    "specialistList": "Мамандар тізімі"
+  },
+  "SignIn": {
+    "phone_number": "Телефон",
+    "password": "Құпия сөз",
+    "requiredField": "Бұл өріс толтырылуы қажет.",
+    "invalidCredentials": "Дұрыс email немесе телефон нөмірін енгізіңіз. Телефонда 10-15 сан болуы керек.",
+    "invalidPhone": "Дұрыс телефон нөмірін енгізіңіз. Телефонда 10-15 сан болуы керек.",
+    "invalidPassword": "Құпия сөз 6 таңбадан кем болмауы керек.",
+    "rememberMe": "Мені есте сақтау",
+    "forgotPassword": "Құпия сөзді ұмыттыңыз ба?",
+    "signIn": "Кіру",
+    "noAccount": "Есептік жазба жоқ па?",
+    "register": "Тіркелу",
+    "passwordPlaceHolder": "12+ таңба, 1 үлкен әріп",
+    "phonePlaceHolder": "Телефон нөмірін енгізіңіз",
+    "emailPlaceHolder": "Электрондық пошта енгізіңіз"
+  },
+  "SignUp": {
+    "name": "Аты-жөні тегі",
+    "lastName": "Тегіңіз",
+    "email": "Электрондық пошта",
+    "phone": "Телефон",
+    "telegram": "Telegram аты",
+    "password": "Құпия сөз",
+    "confirmPassword": "Құпия сөзді растаңыз",
+    "requiredField": "Бұл өрісті толтыру қажет.",
+    "invalidPhone": "Телефон нөмірінің форматы қате",
+    "invalidPasswordLength": "Құпия сөз 8 символдан кем болмауы керек",
+    "passwordsDontMatch": "Құпия сөздер сәйкес келмейді",
+    "signUpButton": "Тіркелу",
+    "alreadyHaveAccount": "Есептік жазбаңыз бар ма?",
+    "signIn": "Кіру",
+    "namePlaceHolder": "Толық аты-жөніңізді енгізіңіз",
+    "phonePlaceHolder": "Телефон нөмірін енгізіңіз",
+    "passwordPlaceHolder": "12+ таңба, 1 үлкен әріп",
+    "emailPlaceHolder": "Электрондық пошта енгізіңіз",
+    "captcha": "Капча коды",
+    "captchaPlaceholder": "Капча кодын енгізіңіз",
+    "activationCode": "Активация коды",
+    "activationCodePlaceholder": "Активация кодын енгізіңіз"
+  },
+  "SignUpSchema": {
+    "fullName": {
+      "required": "Аты-жөні толтыру міндетті.",
+      "invalid": "Аты-жөніңізді және тегіңізді бос орынмен бөліп енгізіңіз"
+    },
+    "email": "Электрондық поштаны енгізіңіз",
+    "phone": {
+      "required": "Телефон нөмірі міндетті түрде толтырылуы керек",
+      "invalid": "Қате формат"
+    },
+
+    "telegram": "Telegram атыңызды енгізіңіз",
+    "password": {
+      "minLength": "Құпия сөз 12 символдан кем болмауы керек",
+      "uppercase": "Құпия сөзде үлкен әріп болуы керек",
+      "lowercase": "Құпия сөзде кіші әріп болуы керек",
+      "digit": "Құпия сөзде сан болуы керек",
+      "specialCharacter": "Құпия сөзде арнайы символ болуы керек"
+    },
+    "confirmPassword": {
+      "required": "Құпия сөзді растаңыз",
+      "notMatch": "Құпия сөздер сәйкес келмейді"
+    },
+    "address": {
+      "minLength": "Мекенжай кемінде 3 таңбадан тұруы керек",
+      "required": "Мекенжайды енгізіңіз"
+    },
+    "filialId": {
+      "required": "Филиалды таңдаңыз"
+    },
+    "roleId": {
+      "required": "Рөлді таңдаңыз"
+    },
+    "status": {
+      "required": "Статусты таңдаңыз"
+    },
+    "captcha": {
+      "required": "Капча кодын енгізіңіз"
+    },
+    "activationCode": {
+      "required": "Активация кодын енгізіңіз"
+    },
+    "iin_bin": {
+      "required": "ИИН / БИН міндетті түрде толтырылуы керек"
+    }
+  },
+  "SignInSchema": {
+    "credentials": {
+      "required": "Телефон нөмірін толтыру міндетті.",
+      "invalid": "Телефон нөмірі дұрыс емес."
+    },
+    "password": "Құпиясөзді енгізу міндетті.",
+    "rememberMe": "Мені есте сақтау"
+  },
+  "Banner": {
+    "SignIn": {
+      "title": "Қош келдіңіз!",
+      "subText": "Өтінеміз, қажетті өрістерді толтырып, жеке аккаунтыңызға кіріңіз",
+      "text": "Жеке аккаунтыңызға кіріңіз"
+    },
+    "SignUp": {
+      "title": "Аккаунтқа кіру",
+      "subText": "Аккаунтыңыз үшін сенімді құпиясөз жасаңыз",
+      "text": "Құпиясөзіңізді растаңыз"
+    },
+    "ResetPassword": {
+      "title": "Құпия сөзді қалпына келтіру!",
+      "subText": "Құпия сөзді қалпына келтіру үшін код алу үшін Telegram нөміріңізді енгізіңіз",
+      "text": "Құпия сөзіңізді ұмыттыңыз ба?"
+    },
+    "NewPassword": {
+      "title": "Құпия сөзді өзгерту",
+      "subText": "Тіркелгіңіз үшін жаңа сенімді құпия сөз жасаңыз",
+      "text": "Жаңа құпия сөз ойлап табыңыз"
+    },
+    "Success": {
+      "title": "Дайын! Құпия сөз өзгертілді",
+      "subText": "Тіркелгіңізге қолжетімділік қалпына келтірілді",
+      "text": "Операция аяқталды"
+    }
+  },
+  "Success": {
+    "ResetPassword": {
+      "title": "Жаңартылды",
+      "text": "Сіздің құпия сөзіңіз сәтті өзгертілді",
+      "button": "Басты бетке"
+    },
+    "Verification": {
+      "title": "",
+      "text": "",
+      "button": ""
+    }
+  },
+  "ResetPassword": {
+    "page": "Құпия сөзді қайта орнату",
+    "Continue": "Жалғастыру",
+    "enterCode": "Растау кодын енгізіңіз",
+    "enterCodeSubText": "Құпия сөзді қалпына келтіру үшін 4 таңбалы кодты енгізіңіз",
+    "DidntGetTheCode": "Кодты алмадыңыз ба?",
+    "reresend": "Қайтадан жіберу",
+    "check": "Тексеру",
+    "createNewPassword": "Жаңа құпия сөз жасау",
+    "createNewPasswordSubtext": "Сіздің жаңа құпия сөзіңіз бұрын қолданылған \nқұпия сөздерден өзгеше болуы керек.",
+    "password": "Құпия сөз",
+    "checkPassword": "Құпия сөзді қайталау",
+    "changePassword": "Құпия сөзді өзгерту",
+    "Telegram": "Telegram"
+  },
+  "Verification": {
+    "title": "Аккаунтыңызды тексеріңіз",
+    "enterCode": "Растау кодын енгізіңіз",
+    "enterCodeSubText": "Telegram аккаунтыңызға жіберілген 4 таңбалы кодты енгізіңіз"
+  },
+  "errors": {
+    "internal_server_error": "Серверде ішкі қате орын алды",
+    "invalid_credentials": "Қате құпиясөз",
+    "user_not_found": "Пайдаланушы аты дұрыс емес",
+    "name_already_exists": "Мұндай пайдаланушы бар",
+    "unknown_error": "Белгісіз қате",
+    "invalid_phone_number": "Телефон нөмірі дұрыс форматта емес",
+    "phone_already_exists": "Аталған телефон нөмірі тіркелген",
+    "invalid_captcha": "Капча коды дұрыс емес",
+    "invalid_activation_code": "Активация коды дұрыс емес",
+    "email_already_exists": "Аталған email тіркелген"
+  },
+  "notifications": {
+    "loginSuccess": "Кіру сәтті орындалды!",
+    "registerSuccess": "Тіркелу сәтті аяқталды!"
+  },
+  "menu": {
+    "mainMenu": "НЕГІЗГІ МӘЗІР",
+    "patients": {
+      "label": "Науқастар",
+      "children": {
+        "list": "Тізім",
+        "appointments": "Жазбалар"
+      }
+    },
+    "finance": {
+      "label": "Қаржы",
+      "children": {
+        "services": "Қызметтер анықтамалығы",
+        "boxOffice": "Касса",
+        "history": "Қызметтер тарихы"
+      }
+    },
+    "expenses": {
+      "label": "Шығындар",
+      "children": {
+        "listOfExpenses": "Шығындар тізімі",
+        "expenseCategories": "Шығыстар санаттары"
+      }
+    },
+    "staff": {
+      "label": "Қызметкерлер",
+      "children": {
+        "listOfStaffs": "Қызметкерлер тізімі",
+        "roles": "Рөлдер",
+        "permissions": "Рұқсаттар",
+        "departments": "Филиалдар"
+      }
+    },
+    "specialist": {
+      "label": "Мамандар",
+      "children": {
+        "listOfSpecialists": "Мамандар тізімі"
+      }
+    },
+    "directory": {
+      "label": "Справочник",
+      "children": {
+        "faq": "Справочник 1",
+        "contactUs": "Справочник 2",
+        "userAgreement": "Справочник 3"
+      }
+    },
+    "reports": {
+      "label": "Есептер",
+      "children": {
+        "financialReport": "Касса бойынша есептер",
+        "expenseReport": "Шығындар бойынша есеп",
+        "annualReport": "Дәрігерлер бонусы",
+        "visitReport": "Келулер есебі"
+      }
+    },
+    "settings": {
+      "label": "Баптаулар"
+    }
+  },
+  "sharedForm": {
+    "headings": {
+      "edit": "Қызметкерді өңдеу",
+      "add": "Қызметкерді қосу",
+      "editProfile": "Профильді өңдеу"
+    },
+    "rolesHeading": {
+      "edit": "Рөлді өңдеу",
+      "add": "Рөлді қосу"
+    },
+    "specialistHeading": {
+      "edit": "Маманды өңдеу",
+      "add": "Маманды қосу"
+    },
+    "labels": {
+      "fullName": "Толық аты (Аты мен Тегін бос орын арқылы бөліңіз)",
+      "password": "Құпия сөз",
+      "email": "Электрондық пошта",
+      "phoneNumber": "Телефон нөмірі",
+      "address": "Мекенжай",
+      "branch": "Филиал",
+      "status": "Статус",
+      "role": "Рөл",
+      "permission": "Рұқсат",
+      "staff": "Қызметкерлер",
+      "description": "Сипаттама",
+      "default": "Атауы",
+      "code": "Код",
+      "iin": "ИИН",
+      "registrationDate": "Тіркелген күні",
+      "dateTime": "Жазба уақыты",
+      "doctor": "Дәрігер",
+      "comment": "Сипаттама",
+      "patient": "Науқасты",
+      "price": "Баға",
+      "isActive": "Қол жетімділік жалауы",
+      "amount": "Шығыстың мөлшері",
+      "category": "Санат",
+      "service": "Қызмет",
+      "payment_type": "Төлем түрі",
+      "result": "Нәтиже",
+      "total": "Жалпы",
+      "specialist": "Мамандар",
+      "internal": "Ішкі",
+      "appointment": "Қабылдау"
+    },
+    "placeholders": {
+      "fullName": "Аты мен тегін енгізіңіз",
+      "password": "Құпия сөзді енгізіңіз",
+      "email": "example@mail.com",
+      "phoneNumber": "Нөмірді енгізіңіз",
+      "address": "Мекенжайды енгізіңіз",
+      "branch": "Филиалды таңдаңыз",
+      "status": "Статусты таңдаңыз",
+      "role": "Рөлді таңдаңыз",
+      "description": "Сипаттаманы енгізіңіз",
+      "default": "Атауын енгізіңіз",
+      "code": "Кодты енгізіңіз",
+      "iin": "ИИН енгізіңіз",
+      "registrationDate": "Тіркелген күнін енгізіңіз",
+      "dateTime": "Жазба уақытын енгізіңіз",
+      "doctor": "Дәрігерді таңдаңыз",
+      "comment": "Сипаттаманы енгізіңіз",
+      "patient": "Науқасты таңдаңыз",
+      "price": "Бағаны енгізіңіз",
+      "amount": "Шығыстың мөлшерін енгізіңіз",
+      "category": "Санатты таңдаңыз",
+      "service": "Қызметті таңдаңыз",
+      "payment_type": "Төлем түрін таңдаңыз",
+      "appointment": "Қабылдау түрін таңдаңыз"
+    },
+    "buttonText": {
+      "save": "Сақтау",
+      "cancel": "Бас тарту",
+      "add": "Қосу",
+      "clear": "Тазалау",
+      "createPatient": "Науқасты қосу",
+      "export": "Экспорттау",
+      "period": "Күнтізбелік"
+    },
+    "active": "Белсенді",
+    "inactive": "Белсенді емес",
+    "internal": "Ішкі",
+    "external": "Сыртқы",
+    "statuses": {
+      "completed": "Орындалды",
+      "cancelled": "Бас тартылды",
+      "scheduled": "Жоспарланған"
+    }
+  },
+  "headers": {
+    "id": "ID",
+    "name": "Аты",
+    "email": "Электрондық пошта",
+    "phone": "Телефон",
+    "address": "Мекенжай",
+    "role": "Рөл",
+    "status": "Статус",
+    "permission": "Рұқсат",
+    "staff": "Қызметкерлер",
+    "description": "Описание",
+    "code": "Code",
+    "filial": "Филиал",
+    "iin": "ИИН",
+    "registrationDate": "Тіркелген күні",
+    "fio": "Аты-жөні",
+    "doctor": "Дәрігер",
+    "dateTime": "Жазба уақыты",
+    "comment": "Сипаттама",
+    "createdAt": "Құрылған күні",
+    "price": "Баға",
+    "isActive": "Қол жетімділік жалауы",
+    "amount": "Шығын сомасы",
+    "default": "Атауы",
+    "patient": "Науқасты",
+    "totalRevenue": "Жалпы түсім",
+    "totalTransactions": "Транзакциялар саны",
+    "startDate": "Басталу күні",
+    "endDate": "Аяқталу күні",
+    "totalExpenses": "Жалпы сома",
+    "categories": "Санаттар",
+    "profit": "Пайда",
+    "year": "Жыл",
+    "totalVisits": "Келулер",
+    "services": "Қызметтер",
+    "doctors": "Дәрігерлер",
+    "specialist": "Маман",
+    "appointment": "Қабылдаулар"
+  },
+  "buttons": {
+    "addStaff": "Қызметкерді қосу",
+    "delete": "Жою",
+    "confirm": "Растау",
+    "cancel": "Бас тарту",
+    "create": "Құру",
+    "addRole": "Рөлді қосу",
+    "save": "Сақтау",
+    "addPermission": "Рұқсат қосу",
+    "addDepartment": "Бөлім қосу",
+    "addPatient": "Науқасты қосу",
+    "addAppointment": "Жазба қосу",
+    "addExpenseCategory": "Шығыстар санаты қосу",
+    "addService": "Қызметті қосу",
+    "addExpense": "Шығысты қосу",
+    "acceptPayment": "Төлемді қабылдау",
+    "addSpecialist": "Маманды қосу"
+  },
+  "modal": {
+    "titleStaff": "Қызметкерді жою",
+    "messageStaff": "Қызметкерді жоюға сенімдісіз бе?",
+    "titleRole": "Рөлді жою",
+    "messageRole": "Рөлді жоюға сенімдісіз бе?",
+    "titlePermission": "Рұқсатты жою",
+    "messagePermission": "Рұқсатты жоюға сенімдісіз бе?",
+    "titleDepartment": "Бөлімді жою",
+    "messageDepartment": "Бөлімді жоюға сенімдісіз бе?",
+    "titlePatient": "Науқасты жою",
+    "messagePatient": "Науқасты жоюға сенімдісіз бе?",
+    "titleAppointment": "Жазба қосу",
+    "messageAppointment": "Жазба қосуға сенімдісіз бе?",
+    "titleExpenseCategory": "Шығыстар санатын жою",
+    "messageExpenseCategory": "Шығыстар санатын жоюға сенімдісіз бе?",
+    "titleService": "Қызметті жою",
+    "messageService": "Қызметті жоюға сенімдісіз бе?",
+    "titleExpense": "Шығысты жою",
+    "messageExpense": "Шығысты жоюға сенімдісіз бе?",
+    "titleSpecialist": "Маманды жою",
+    "messageSpecialist": "Маманды жоюға сенімдісіз бе?",
+    "titleExpenses": "Шығындарды жою",
+    "messageExpenses": "Шығындарды"
+  },
+  "successNotifications": {
+    "deleteStaff": "Қызметкерлер сәтті жойылды",
+    "saved": "Деректер сақталды",
+    "deleteRole": "Рөлдер сәтті жойылды",
+    "deletePermission": "Рұқсат сәтті жойылды",
+    "deleteDepartment": "Бөлімдер сәтті жойылды",
+    "deletePatient": "Науқастар сәтті жойылды",
+    "deleteAppointment": "Жазбалар сәтті жойылды",
+    "deleteExpenseCategory": "Шығыстар санаты сәтті жойылды",
+    "deleteService": "Қызмет сәтті жойылды",
+    "deleteExpense": "Шығысты сәтті жойылды",
+    "logoUploaded": "Логотип сәтті жүктелді",
+    "deleteSpecialist": "Мамандар сәтті жойылды"
+  },
+  "errorNotifications": {
+    "deleteStaff": "Қызметкерлерді жою кезінде қате пайда болды",
+    "deleteRole": "Рөлді жою кезінде қате пайда болды",
+    "staffNotfound": "Қызметкер табылмады",
+    "roleNotfound": "Рөл табылмады",
+    "notSaved": "Деректерді сақтау қатесі!",
+    "deletePermission": "Рұқсатті жою кезінде қате пайда болды",
+    "PermissionNotfound": "Рұқсат табылмады",
+    "deleteDepartment": "Бөлімді жою кезінде қате пайда болды",
+    "DepartmentNotfound": "Бөлімдер табылмады",
+    "deletePatient": "Науқасты жою кезінде қате пайда болды",
+    "PatientNotfound": "Науқастар табылмады",
+    "deleteAppointment": "Жазбалар жою кезінде қате пайда болды",
+    "roleAlreadyExists": "Рөл атауы бар",
+    "filialAlreadyExists": "Филиал атауы бар",
+    "emailAlreadyExists": "Email тіркелген",
+    "phoneAlreadyExists": "Телефон нөмірі тіркелген",
+    "permissionAlreadyExists": "Рұқсат атауы бар",
+    "expenseCategoryAlreadyExists": "Шығыстар санаты атауы бар",
+    "deleteExpenseCategory": "Шығыстар санатын жою кезінде қате пайда болды",
+    "deleteService": "Қызметті жою кезінде қате пайда болды",
+    "serviceAlreadyExists": "Қызмет атауы бар",
+    "deleteExpense": "Шығысты жою кезінде қате пайда болды",
+    "logoNotUploaded": "Логотипті жүктеу кезінде қате пайда болды",
+    "iinAlreadyExists": "Бұл ИИН бар пациент жүйеде тіркелген",
+    "forbidden": "Сізге бұл қызметті орындау үшін рұқсат жоқ",
+    "deleteSpecialist": "Маманды жою кезінде қате пайда болды",
+    "SpecialistNotfound": "Маман табылмады"
+
+  },
+  "permissionSchema": {
+    "name": {
+      "min": "Рұқсат атауы кемінде 3 таңбадан тұруы керек"
+    },
+    "description": {
+      "min": "Сипаттама бос болмауы керек"
+    },
+    "code": {
+      "min": "Код бос болмауы керек"
+    }
+  },
+  "roleSchema": {
+    "name": {
+      "min": "Рөл атауы кемінде 2 таңбадан тұруы керек"
+    },
+    "permissions": {
+      "min": "Кем дегенде бір рұқсатты таңдаңыз"
+    }
+  },
+  "patientSchema": {
+    "fio": {
+      "min": "Аты-жөні кемінде 2 таңбадан тұруы керек"
+    },
+    "phone": {
+      "min": "Телефон нөмірін енгізіңіз"
+    },
+    "iin": {
+      "required": "IIN міндетті түрде толтырылуы керек",
+      "length": "IIN 12 таңбадан тұруы керек",
+      "number": "Сандардан тұруы керек"
+    },
+    "address": {
+      "min": "Мекенжайды енгізіңіз"
+    },
+    "filial_id": {
+      "min": "Филиалды таңдаңыз"
+    }
+  },
+  "appointmentSchema": {
+    "patient_id": {
+      "min": "Науқасты таңдаңыз"
+    },
+    "staff_id": {
+      "min": "Дәрігерді таңдаңыз"
+    },
+    "specialist_id": {
+      "min": "Дәрігерді таңдаңыз"
+    },
+    "date_time": {
+      "min": "Жазба уақытын енгізіңіз"
+    },
+    "status": {
+      "min": "Жазба статусын таңдаңыз"
+    },
+    "services": {
+      "min": "Қызметті таңдаңыз"
+    }
+  },
+  "common": {
+    "next": "Келесі",
+    "back": "Артқа",
+    "generateNewCode": "Жаңа кодты құру",
+    "logout": "Шығу",
+    "goToHomePage": "Басты бетке өту",
+    "forbidden": "Сізге бұл қызметті орындау үшін рұқсат жоқ",
+    "noPermission": "Сізге бұл қызметті орындау үшін рұқсат жоқ",
+    "noData": "Деректер жоқ",
+    "total": "Жалпы"
+  },
+  "filialSchema": {
+    "name": {
+      "required": "Атауы міндетті түрде толтырылуы керек"
+    },
+    "address": {
+      "required": "Мекенжайы міндетті түрде толтырылуы керек"
+    },
+    "phone": {
+      "required": "Телефон нөмірі міндетті түрде толтырылуы керек"
+    },
+    "email": {
+      "required": "Email міндетті түрде толтырылуы керек"
+    },
+    "status": {
+      "required": "Статусты таңдаңыз"
+    }
+  },
+  "expenseCategorySchema": {
+    "name": {
+      "required": "Атауы міндетті түрде толтырылуы керек"
+    },
+    "description": {
+      "required": "Сипаттама міндетті түрде толтырылуы керек"
+    }
+  },
+  "serviceSchema": {
+    "name": {
+      "required": "Атауы міндетті түрде толтырылуы керек"
+    },
+    "description": {
+      "required": "Сипаттама міндетті түрде толтырылуы керек"
+    },
+    "price": {
+      "required": "Баға міндетті түрде толтырылуы керек",
+      "invalid": "Бағаны дұрыс енгізіңіз"
+    }
+  },
+  "expenseSchema": {
+    "category_id": {
+      "required": "Шығыстар санатын таңдаңыз"
+    },
+    "amount": {
+      "required": "Шығыстың мөлшерін енгізіңіз",
+      "invalid": "Шығыстың мөлшерін дұрыс енгізіңіз"
+    },
+    "description": {
+      "required": "Сипаттама міндетті түрде толтырылуы керек"
+    }
+  },
+  "boxOfficeSchema": {
+    "serviceId": {
+      "required": "Қызметті таңдаңыз"
+    },
+    "payment_type": {
+      "required": "Төлем түрін таңдаңыз",
+      "cash": "Қолма-қол",
+      "card": "Карта",
+      "transfer": "Онлайн аударым"
+    }
+  },
+  "periodOptions": {
+    "daily": "Кеше бойынша",
+    "weekly": "Апта бойынша",
+    "monthly": "Ай бойынша",
+    "yearly": "Жыл бойынша"
+  },
+  "settings": {
+    "title": "Ұйымның деректерін өңдеу",
+    "logo": {
+      "title": "Логотипті өңдеу",
+      "upload": "Логотипті жүктеу",
+      "remove": "Логотипті жою"
+    },
+    "organisation": {
+      "name": "Атауы",
+      "phone": "Телефон",
+      "iin_bin": "ИИН / БИН",
+      "legal_address": "Заңды мекенжайы",
+      "director": "Директор",
+      "bio": "Ұйымның сипаттамасы"
+    }
+  },
+  "OrganisationForm": {
+    "name": {
+      "required": "Атауы міндетті түрде толтырылуы керек"
+    },
+    "legal_address": {
+      "required": "Заңды мекенжайы міндетті түрде толтырылуы керек"
+    },
+    "director": {
+      "required": "Директорды таңдаңыз"
+    },
+    "bio": {
+      "required": "Сипаттама міндетті түрде толтырылуы керек"
+    }
+  },
+  "unsavedChanges": "Өзгерістерді сақтау қажет",
+  "pagination": {
+    "showing": "Көрсетілген",
+    "of": "қатардағы",
+    "pages": "беттер"
+  },
+  "search": "Іздеу"
+}

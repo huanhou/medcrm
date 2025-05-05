@@ -1,0 +1,1 @@
+export { DictionaryProvider } from './dictionary-provider';

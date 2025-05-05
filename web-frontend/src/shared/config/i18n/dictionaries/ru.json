@@ -1,0 +1,672 @@
+{
+  "pages": {
+    "home": "Главная",
+    "signIn": "Вход",
+    "signUp": "Регистрация",
+    "resetPassword": "Сброс пороля",
+    "notFound": "Страница не найдена",
+    "products": "Продукты",
+    "staff": "Сотрудники",
+    "staffList": "Список сотрудников",
+    "editStaff": "Редактирование сотрудника",
+    "createStaff": "Создание сотрудника",
+    "roles": "Роли",
+    "editRole": "Редактирование роли",
+    "createRole": "Создание роли",
+    "permissions": "Разрешения",
+    "editPermission": "Редактирование разрешения",
+    "createPermission": "Создание разрешения",
+    "departments": "Филиалы",
+    "editDepartment": "Редактирование филиала",
+    "createDepartments": "Создание филиала",
+    "patients": "Пациенты",
+    "editPatient": "Редактирование пациента",
+    "createPatient": "Создание пациента",
+    "appointments": "Приемы",
+    "editAppointment": "Редактирование приема",
+    "createAppointment": "Создание приема",
+    "filials": "Филиалы",
+    "editFilial": "Редактирование филиала",
+    "createFilial": "Создание филиала",
+    "expenseCategories": "Категории расходов",
+    "editExpenseCategory": "Редактирование категории расходов",
+    "createExpenseCategory": "Создание категории расходов",
+    "services": "Услуги",
+    "editService": "Редактирование услуги",
+    "createService": "Создание услуги",
+    "expenses": "Расходы",
+    "editExpense": "Редактирование расхода",
+    "createExpense": "Создание расхода",
+    "transactionsHistory": "История услуг",
+    "boxOffice": "Касса",
+    "createBoxOffice": "Сведения о пациенте",
+    "financialReport": "Отчеты по кассе",
+    "expenseReport": "Отчеты по расходам",
+    "annualReport": "Годовой отчет",
+    "visitReport": "Отчеты по посещениям",
+    "settings": "Настройки",
+    "profileEdit": "Настройка профиля",
+    "specialists": "Специалисты",
+    "editSpecialist": "Редактирование специалиста",
+    "createSpecialist": "Создание специалиста",
+    "specialistList": "Список специалистов"
+  },
+  "SignIn": {
+    "phone_number": "Телефон",
+    "password": "Пароль",
+    "requiredField": "Это поле обязательно для заполнения.",
+    "invalidCredentials": "Введите корректный email или номер телефона. Телефон должен содержать от 10 до 15 цифр.",
+    "invalidPhone": "Введите корректный номер телефона. Телефон должен содержать от 10 до 15 цифр",
+    "invalidPassword": "Пароль должен содержать минимум 6 символов.",
+    "rememberMe": "Запомнить меня",
+    "forgotPassword": "Забыли пароль?",
+    "signIn": "Войти",
+    "noAccount": "Нет учетной записи?",
+    "register": "Зарегистрироваться",
+    "passwordPlaceHolder": "12+ символов, 1 заглавная буква",
+    "phonePlaceHolder": "Введите телефонный номер",
+    "emailPlaceHolder": "Введите email"
+  },
+  "SignUp": {
+    "name": "ФИО",
+    "lastName": "Фамилия",
+    "email": "Электронная почта",
+    "phone": "Телефон",
+    "telegram": "Telegram username",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "requiredField": "Это поле обязательно для заполнения.",
+    "invalidPhone": "Некорректный формат телефона",
+    "invalidPasswordLength": "Пароль должен быть не менее 8 символов",
+    "passwordsDontMatch": "Пароли не совпадают",
+    "signUpButton": "Зарегистрироваться",
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+    "signIn": "Войти",
+    "namePlaceHolder": "Введите ФИО",
+    "phonePlaceHolder": "+7 (XXX) XXX-XX-XX",
+    "passwordPlaceHolder": "Введите пароль",
+    "emailPlaceHolder": "example@mail.com",
+    "captcha": "Код капчи",
+    "captchaPlaceholder": "Введите код капчи",
+    "activationCode": "Код активации",
+    "activationCodePlaceholder": "Введите код активации"
+  },
+  "SignUpSchema": {
+    "fullName": {
+      "required": "ФИО обязательно для заполнения",
+      "invalid": "Введите имя и фамилию, разделив их пробелом"
+    },
+    "lastName": "Введите фамилию",
+    "email": "Введите корректный email",
+    "phone": {
+      "required": "Телефонный номер обязателен для заполнения",
+      "invalid": "Не верный формат"
+    },
+    "telegram": "Введите Telegram username",
+    "password": {
+      "minLength": "Пароль должен быть не менее 12 символов",
+      "uppercase": "Пароль должен содержать хотя бы одну заглавную букву",
+      "lowercase": "Пароль должен содержать хотя бы одну строчную букву",
+      "digit": "Пароль должен содержать хотя бы одну цифру",
+      "specialCharacter": "Пароль должен содержать хотя бы один специальный символ"
+    },
+    "confirmPassword": {
+      "required": "Подтвердите пароль",
+      "notMatch": "Пароли не совпадают"
+    },
+    "address": {
+      "minLength": "Адрес должен содержать минимум 3 символа",
+      "required": "Введите адрес"
+    },
+    "filialId": {
+      "required": "Выберите филиал"
+    },
+    "roleId": {
+      "required": "Выберите роль"
+    },
+    "status": {
+      "required": "Выберите статус"
+    },
+    "captcha": {
+      "required": "Введите код капчи"
+    },
+    "activationCode": {
+      "required": "Введите код активации"
+    },
+    "iin_bin": {
+      "required": "ИИН / БИН обязателен для заполнения"
+    }
+  },
+  "SignInSchema": {
+    "credentials": {
+      "required": "Номер телефона обязателен для заполнения.",
+      "invalid": "Некорректный номер телефона."
+    },
+    "password": "Пароль обязателен для заполнения.",
+    "rememberMe": "Запомнить меня"
+  },
+  "Banner": {
+    "SignIn": {
+      "title": "Добро пожаловать!",
+      "subText": "Пожалуйста, войдите в свою учетную запись, заполнив необходимые поля",
+      "text": "Войдите в свою учетную запись"
+    },
+    "SignUp": {
+      "title": "Вход в аккаунт",
+      "subText": "Создайте надежный пароль для вашего аккаунта",
+      "text": "Подтвердите свой пароль"
+    },
+    "ResetPassword": {
+      "title": "Сбросить пароль!",
+      "subText": "Введите свой номер Telegram, чтобы получить код для сброса пароля",
+      "text": "Забыли свой пароль?"
+    },
+    "NewPassword": {
+      "title": "Смена пароля",
+      "subText": "Создайте новый надежный пароль для вашего аккаунта",
+      "text": "Придумайте новый пароль"
+    },
+    "Success": {
+      "title": "Готово! Пароль изменён",
+      "subText": "Доступ к вашему аккаунту восстановлен",
+      "text": "Операция выполнена"
+    }
+  },
+  "Success": {
+    "ResetPassword": {
+      "title": "Обновлено",
+      "text": "Ваш пароль успешно изменен",
+      "button": "На главную"
+    },
+    "Verification": {
+      "title": "",
+      "text": "",
+      "button": ""
+    }
+  },
+  "ResetPassword": {
+    "page": "Сброс пороля",
+    "Continue": "Продолжить",
+    "enterCode": "Введите код подтверждения",
+    "enterCodeSubText": "Введите 4-значный код для сброса пароля",
+    "DidntGetTheCode": "Не получил код?",
+    "reresend": "Отправить повторно",
+    "check": "Проверить",
+    "createNewPassword": "Создать новый пароль",
+    "createNewPasswordSubtext": "Ваш новый пароль должен отличаться от \nпредыдущих использованных паролей.",
+    "password": "Пароль",
+    "checkPassword": "Повторный пароль",
+    "changePassword": "Сменить пароль",
+    "successUpdated": "Ваш пароль успешно изменен",
+    "Telegram": "Telegram"
+  },
+  "Verification": {
+    "title": "Подтвердите свой аккаунт",
+    "enterCode": "Введите код подтверждения",
+    "enterCodeSubText": "Введите 4-значный код, отправленный на телеграм аккаунт"
+  },
+  "errors": {
+    "internal_server_error": "Внутренняя ошибка сервера",
+    "invalid_credentials": "Неверный пароль",
+    "user_not_found": "Неверное имя пользователя",
+    "name_already_exists": "Такой пользователь уже существует",
+    "unknown_error": "Неизвестная ошибка",
+    "invalid_phone_number": "Неверный формат телефона",
+    "phone_already_exists": "Данный номер телефона уже зарегистрирован",
+    "invalid_captcha": "Неверный код с картинки",
+    "invalid_activation_code": "Неверный код активации",
+    "email_already_exists": "Данный email уже зарегистрирован"
+  },
+  "notifications": {
+    "loginSuccess": "Вы успешно вошли в систему!",
+    "registerSuccess": "Регистрация прошла успешно!"
+  },
+  "menu": {
+    "mainMenu": "ГЛАВНОЕ МЕНЮ",
+    "patients": {
+      "label": "Пациенты",
+      "children": {
+        "list": "Список пациентов",
+        "appointments": "Приемы"
+      }
+    },
+    "finance": {
+      "label": "Финансы",
+      "children": {
+        "services": "Справочник услуг",
+        "boxOffice": "Касса",
+        "history": "История услуг"
+      }
+    },
+    "expenses": {
+      "label": "Расходы",
+      "children": {
+        "listOfExpenses": "Список расходов",
+        "expenseCategories": "Категории расходов"
+      }
+    },
+    "staff": {
+      "label": "Сотрудники",
+      "children": {
+        "listOfStaffs": "Список сотрудников",
+        "roles": "Роли",
+        "permissions": "Разрешения",
+        "departments": "Филиалы"
+      }
+    },
+    "specialist": {
+      "label": "Специалисты",
+      "children": {
+        "listOfSpecialists": "Список специалистов"
+      }
+    },
+    "directory": {
+      "label": "Справочник",
+      "children": {
+        "faq": "Справочник 1",
+        "contactUs": "Справочник 2",
+        "userAgreement": "Справочник 3"
+      }
+    },
+    "reports": {
+      "label": "Отчеты",
+      "children": {
+        "financialReport": "Отчеты по кассе",
+        "expenseReport": "Отчеты по расходам",
+        "annualReport": "Бонус врачей",
+        "visitReport": "Отчеты по посещениям"
+      }
+    },
+    "settings": {
+      "label": "Настройки"
+    }
+  },
+  "sharedForm": {
+    "headings": {
+      "edit": "Редактирование сотрудника",
+      "add": "Добавление сотрудника",
+      "editProfile": "Редактирование профиля"
+    },
+    "rolesHeading": {
+      "edit": "Редактирование роли",
+      "add": "Добавление роли"
+    },
+    "specialistHeading": {
+      "edit": "Редактирование специалиста",
+      "add": "Добавление специалиста"
+    },
+    "labels": {
+      "fullName": "ФИО (Имя и Фамилия через пробел)",
+      "password": "Пароль",
+      "email": "Email",
+      "phoneNumber": "Номер телефона",
+      "address": "Адрес",
+      "branch": "Филиал",
+      "status": "Статус",
+      "role": "Роль",
+      "permission": "Доступ",
+      "staff": "Сотрудники",
+      "description": "Описание",
+      "default": "Название",
+      "code": "Код",
+      "iin": "ИИН",
+      "registrationDate": "Дата регистрации",
+      "dateTime": "Дата и время",
+      "doctor": "Специалист",
+      "comment": "Комментарий",
+      "patient": "Пациент",
+      "price": "Цена",
+      "isActive": "Флаг доступности",
+      "amount": "Сумма расхода",
+      "category": "Категория",
+      "service": "Услуга",
+      "payment_type": "Тип оплаты",
+      "result": "Результат",
+      "total": "Итого",
+      "specialist": "Специалисты",
+      "internal": "Внутренний",
+      "appointment": "Приемы"
+    },
+    "placeholders": {
+      "fullName": "Введите имя и фамилию",
+      "password": "Введите пароль",
+      "email": "example@mail.com",
+      "phoneNumber": "Введите номер",
+      "address": "Введите адрес",
+      "branch": "Выберите филиал",
+      "status": "Выберите статус",
+      "role": "Выберите роль",
+      "description": "Введите описание",
+      "default": "Введите название",
+      "code": "Введите код",
+      "iin": "Введите ИИН",
+      "registrationDate": "Введите дату регистрации",
+      "dateTime": "Введите дату и время",
+      "doctor": "Выберите врача",
+      "comment": "Введите комментарий",
+      "patient": "Выберите пациента",
+      "price": "Введите цену",
+      "amount": "Введите сумму расхода",
+      "category": "Выберите категорию",
+      "service": "Выберите услугу",
+      "payment_type": "Выберите тип оплаты",
+      "appointment": "Выберите прием"
+    },
+    "buttonText": {
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "add": "Добавить",
+      "clear": "Очистить",
+      "createPatient": "Добавить пациента",
+      "acceptPayment": "Принять оплату",
+      "export": "Экспортировать",
+      "period": "По дате"
+    },
+    "active": "Активный",
+    "inactive": "Неактивный",
+    "internal": "Внутренний",
+    "external": "Внешний",
+    "statuses": {
+      "completed": "Выполнено",
+      "cancelled": "Отменено",
+      "scheduled": "Запланировано"
+    }
+  },
+  "headers": {
+    "id": "ID",
+    "name": "Имя",
+    "email": "Электронная почта",
+    "phone": "Телефон",
+    "address": "Адрес",
+    "role": "Роль",
+    "status": "Статус",
+    "permission": "Доступ",
+    "staff": "Сотрудники",
+    "description": "Описание",
+    "code": "Code",
+    "filial": "Филиал",
+    "iin": "ИИН",
+    "registrationDate": "Дата регистрации",
+    "fio": "ФИО",
+    "dateTime": "Дата и время",
+    "doctor": "Врач",
+    "comment": "Комментарий",
+    "createdAt": "Дата создания",
+    "price": "Цена",
+    "isActive": "Флаг доступности",
+    "category": "Категория",
+    "amount": "Сумма расхода",
+    "default": "Название",
+    "patient": "Пациент",
+    "totalRevenue": "Общая выручка",
+    "totalTransactions": "Транзакций",
+    "startDate": "Начало периода",
+    "endDate": "Конец периода",
+    "totalExpenses": "Общая сумма",
+    "categories": "Категории",
+    "profit": "Прибыль",
+    "year": "Год",
+    "totalVisits": "Посещений",
+    "services": "Услуги",
+    "doctors": "Врачи",
+    "specialist": "Специалист",
+    "appointment": "Приемы"
+  },
+  "buttons": {
+    "addStaff": "Добавить сотрудника",
+    "delete": "Удалить",
+    "confirm": "Подтвердить",
+    "cancel": "Отмена",
+    "create": "Создать",
+    "addRole": "Добавить роль",
+    "save": "Сохранить",
+    "addPermission": "Добавить разрешение",
+    "addDepartment": "Добавить филиал",
+    "addPatient": "Добавить пациента",
+    "addAppointment": "Добавить прием",
+    "addExpenseCategory": "Добавить категорию расходов",
+    "addService": "Добавить услугу",
+    "addExpense": "Добавить расход",
+    "acceptPayment": "Принять оплату",
+    "addSpecialist": "Добавить специалиста"
+  },
+  "modal": {
+    "titleStaff": "Удаления сотрудника",
+    "messageStaff": "Вы уверены, что хотите удалить сотрудника?",
+    "titleRole": "Удаление роли",
+    "messageRole": "Вы уверены, что хотите удалить роль?",
+    "titlePermission": "Удаление разрешения",
+    "messagePermission": "Вы уверены, что хотите удалить разрешение?",
+    "titleDepartment": "Удаление филиала",
+    "messageDepartment": "Вы уверены, что хотите удалить филиал?",
+    "titlePatient": "Удаление пациента",
+    "messagePatient": "Вы уверены, что хотите удалить пациента?",
+    "titleAppointment": "Удаление приема",
+    "messageAppointment": "Вы уверены, что хотите удалить прием?",
+    "titleExpenseCategory": "Удаление категории расходов",
+    "messageExpenseCategory": "Вы уверены, что хотите удалить категорию расходов?",
+    "titleService": "Удаление услуги",
+    "messageService": "Вы уверены, что хотите удалить услугу?",
+    "titleExpense": "Удаление расхода",
+    "messageExpense": "Вы уверены, что хотите удалить расход?",
+    "titleSpecialist": "Удаления специалиста",
+    "messageSpecialist": "Вы уверены, что хотите удалить специалиста?",
+    "titleExpenses": "Удаление расходов",
+    "messageExpenses": "Вы уверены, что хотите удалить расходы?"
+  },
+  "successNotifications": {
+    "deleteStaff": "Сотрудники успешно удалены",
+    "saved": "Данные сохранены",
+    "deleteRole": "Роли успешно удалены",
+    "deletePermission": "Разрешение успешно удалено",
+    "deleteDepartment": "Филиалы успешно удалены",
+    "deletePatient": "Пациенты успешно удалены",
+    "deleteAppointment": "Приемы успешно удалены",
+    "deleteExpenseCategory": "Категория расходов успешно удалена",
+    "deleteService": "Услуга успешно удалена",
+    "deleteExpense": "Расход успешно удален",
+    "logoUploaded": "Логотип успешно загружен",
+    "deleteSpecialist": "Специалисты успешно удалены"
+  },
+  "errorNotifications": {
+    "deleteStaff": "Ошибка при удалении сотрудников",
+    "deleteRole": "Ошибка при удалении роли",
+    "staffNotfound": "Сотрудник не найден",
+    "roleNotfound": "Роль не найдена",
+    "notSaved": "Ошибка сохранения данных!",
+    "deletePermission": "Ошибка при удалении разрешения",
+    "PermissionNotfound": "Разрешение не найдено",
+    "deleteDepartment": "Ошибка при удалении филиала",
+    "DepartmentNotfound": "Филиал не найден",
+    "deletePatient": "Ошибка при удалении пациента",
+    "PatientNotfound": "Пациент не найден",
+    "deleteAppointment": "Ошибка при удалении приема",
+    "roleAlreadyExists": "Роль с таким именем уже существует",
+    "filialAlreadyExists": "Филиал с таким именем уже существует",
+    "emailAlreadyExists": "Данный email уже зарегистрирован",
+    "phoneAlreadyExists": "Данный номер телефона уже зарегистрирован",
+    "permissionAlreadyExists": "Разрешение с таким именем уже существует",
+    "expenseCategoryAlreadyExists": "Категория расходов с таким именем уже существует",
+    "deleteExpenseCategory": "Ошибка при удалении категории расходов",
+    "deleteService": "Ошибка при удалении услуги",
+    "serviceAlreadyExists": "Услуга с таким именем уже существует",
+    "deleteExpense": "Ошибка при удалении расхода",
+    "logoNotUploaded": "Ошибка при загрузке логотипа",
+    "iinAlreadyExists": "Пациент с таким ИИН уже существует",
+    "forbidden": "У вас нет доступа к этой функции",
+    "deleteSpecialist": "Ошибка при удалении специалиста",
+    "SpecialistNotfound": "Специалист не найден"
+  },
+  "permissionSchema": {
+    "name": {
+      "min": "Разрешение должно содержать минимум 3 символа"
+    },
+    "description": {
+      "min": "Описание не должен быть пустым"
+    },
+    "code": {
+      "min": "Код не должен быть пустым"
+    }
+  },
+  "roleSchema": {
+    "name": {
+      "min": "Название роли должно содержать минимум 2 символа"
+    },
+    "permissions": {
+      "min": "Выберите хотя бы одно разрешение"
+    }
+  },
+  "patientSchema": {
+    "fio": {
+      "min": "Введите полное имя (минимум 2 слова)"
+    },
+    "phone": {
+      "min": "Введите номер телефона"
+    },
+    "iin": {
+      "required": "ИИН обязателен для заполнения",
+      "length": "ИИН должен содержать 12 символов",
+      "number": "Должны быть только цифры"
+    },
+    "address": {
+      "min": "Введите адрес"
+    },
+    "filial_id": {
+      "min": "Выберите филиал"
+    }
+  },
+  "appointmentSchema": {
+    "patient_id": {
+      "min": "Выберите пациента"
+    },
+    "staff_id": {
+      "min": "Дәрігерді таңдаңыз"
+    },
+    "specialist_id": {
+      "min": "Выберите врача"
+    },
+    "date_time": {
+      "min": "Выберите дату и время"
+    },
+    "status": {
+      "min": "Выберите статус"
+    },
+    "services": {
+      "min": "Выберите хотя бы одну услугу"
+    }
+  },
+  "common": {
+    "next": "Далее",
+    "back": "Назад",
+    "generateNewCode": "Сгенерировать новый код",
+    "logout": "Выйти",
+    "goToHomePage": "На главную страницу",
+    "forbidden": "У вас нет доступа к этой функции",
+    "noPermission": "У вас нет доступа к этой функции",
+    "noData": "Нет данных",
+    "total": "Итого"
+  },
+  "filialSchema": {
+    "name": {
+      "required": "Название обязательно для заполнения"
+    },
+    "address": {
+      "required": "Адрес обязателен для заполнения"
+    },
+    "phone": {
+      "required": "Телефон обязателен для заполнения"
+    },
+    "email": {
+      "required": "Email обязателен для заполнения"
+    },
+    "status": {
+      "required": "Выберите статус"
+    }
+  },
+  "expenseCategorySchema": {
+    "name": {
+      "required": "Название обязательно для заполнения"
+    },
+    "description": {
+      "required": "Описание обязательно для заполнения"
+    }
+  },
+  "serviceSchema": {
+    "name": {
+      "required": "Название обязательно для заполнения"
+    },
+    "description": {
+      "required": "Описание обязательно для заполнения"
+    },
+    "price": {
+      "required": "Цена обязательна для заполнения",
+      "invalid": "Цена должна быть числом"
+    }
+  },
+  "expenseSchema": {
+    "category_id": {
+      "required": "Категория обязательна для заполнения"
+    },
+    "amount": {
+      "required": "Сумма обязательна для заполнения",
+      "invalid": "Сумма должна быть числом"
+    },
+    "description": {
+      "required": "Описание обязательно для заполнения"
+    }
+  },
+  "boxOfficeSchema": {
+    "serviceId": {
+      "required": "Услуга обязательна для заполнения"
+    },
+    "payment_type": {
+      "required": "Тип оплаты обязателен для заполнения",
+      "cash": "Наличные",
+      "card": "Карта",
+      "transfer": "Перевод"
+    }
+  },
+  "periodOptions": {
+    "daily": "За вчера",
+    "weekly": "За неделю",
+    "monthly": "За месяц",
+    "yearly": "За год"
+  },
+  "settings": {
+    "title": "Редактирование данных организации",
+    "logo": {
+      "title": "Редактирование логотипа",
+      "upload": "Загрузить логотип",
+      "remove": "Удалить логотип"
+    },
+    "organisation": {
+      "name": "Название",
+      "phone": "Телефон",
+      "iin_bin": "ИИН / БИН",
+      "legal_address": "Юридический адрес",
+      "director": "Директор",
+      "bio": "Описание организации"
+    }
+  },
+  "OrganisationForm": {
+    "name": {
+      "required": "Название обязательно для заполнения"
+    },
+    "legal_address": {
+      "required": "Юридический адрес обязателен для заполнения"
+    },
+    "director": {
+      "required": "Руководитель обязателен для заполнения"
+    },
+    "bio": {
+      "required": "Описание организации обязательно для заполнения"
+    }
+  },
+  "unsavedChanges": "Несохраненные изменения",
+  "pagination": {
+    "showing": "Показано",
+    "of": "из",
+    "pages": "страниц"
+  },
+  "search": "Поиск"
+}
