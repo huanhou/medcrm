@@ -46,18 +46,13 @@ export const useRoleForm = ({ defaultValues, onSubmit }: UseRolesFormProps) => {
     // Fetch permissions
     const { data: permissionData } = useGetPermissionsQuery();
 
-    // Check if permissionData is an array and map it accordingly
+    // Since permissionData is already the array, we map it directly
     const permission: MultiSelectOption[] = Array.isArray(permissionData)
         ? permissionData.map((permissionItem: Permission) => ({
             label: permissionItem.name,
             id: permissionItem.id,
         }))
-        : [];  // Return an empty array if permissionData is not an array
-
-    // Log permissionData to debug if it's not an array
-    if (!Array.isArray(permissionData)) {
-        console.error("Expected permissionData to be an array, but got:", permissionData);
-    }
+        : [];  // If permissionData is not an array, default to an empty array
 
     return {
         formMethods,
@@ -69,7 +64,7 @@ export const useRoleForm = ({ defaultValues, onSubmit }: UseRolesFormProps) => {
         dictionary,
         modalOpen,
         setModalOpen,
-        permission,
+        permission,  // Now it will always be a valid array
         setValue,
     };
 };

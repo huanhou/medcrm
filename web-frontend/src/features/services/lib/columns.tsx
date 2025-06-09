@@ -34,7 +34,10 @@ export const useServicesTableColumns = () => {
             }),
             columnHelper.accessor('id', {
                 header: headers.id,
-                cell: (info) => info.getValue().slice(0, 4).toUpperCase(),
+                cell: (info) => {
+                    const value = info.getValue();
+                    return typeof value === 'string' ? value.slice(0, 4).toUpperCase() : value; // Safely check if value is a string before calling .slice
+                },
             }),
             columnHelper.accessor('name', {
                 header: headers.name,

@@ -98,35 +98,22 @@ export const GenericTable: FC<GenericTableProps> = ({
 
     const handleConfirmDelete = () => {
         if (!canDelete) {
-            toast.error(noPermissionMessage); // Show permission error if user doesn't have delete permission
-            setModalOpen(false); // Close modal
+            setModalOpen(false);
             return;
         }
 
-        // Gather the IDs of selected rows (for any entity type)
-        const selectedIds = selectedRows.map((row: { original: { id: number } }) => row.original.id);
-
-        // If no rows are selected, show an error
-        if (selectedIds.length === 0) {
-            toast.error("No items selected for deletion.");
-            setModalOpen(false); // Close modal
-            return;
-        }
-
-        // Call the delete mutation with the selected IDs (can be roles, staff, etc.)
         deleteMutation.mutate(selectedIds, {
             onSuccess: () => {
-                toast.success(successNotifications.deleteItem);  // Success message is based on the entity
-                queryClient.invalidateQueries({ queryKey: [queryKey] }); // Invalidate queries after deletion
-                tableLogic.table.resetRowSelection();  // Reset row selection in table
+                toast.success(successNotifications.deleteStaff);
+                queryClient.invalidateQueries({ queryKey: [queryKey] });
+                tableLogic.table.resetRowSelection();
             },
             onError: (error: any) => {
-                toast.error(errorNotifications.deleteItem);  // Show error message
-                console.error(ERROR_MESSAGE.unknown, error); // Log error
+                toast.error(errorNotifications.deleteStaff);
+                console.error(ERROR_MESSAGE.unknown, error);
             },
         });
-
-        setModalOpen(false); // Close modal after deletion
+        setModalOpen(false);
     };
 
     const rowClickHandler = canEdit ? handleRowClick : () => toast.error(noPermissionMessage);

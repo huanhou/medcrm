@@ -85,10 +85,10 @@ export const ServiceForm = ({ defaultValues, onSubmit, buttonText, isLoading }: 
                 <div>
                     <Switcher
                         label={sharedForm.labels.isActive}
-                        {...register('is_active')}
-                        defaultValue={defaultValues.is_active}
+                        {...register('isAvailable')}
+                        defaultValue={defaultValues.isAvailable}
                         onChange={(newValue) => {
-                            setValue('is_active', newValue, { shouldDirty: true });
+                            setValue('isAvailable', newValue, { shouldDirty: true });
                         }}
                     />
                 </div>

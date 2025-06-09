@@ -37,7 +37,7 @@ export const CreateServiceForm = () => {
                 name: '',
                 description: '',
                 price: '',
-                is_active: true,
+                isAvailable: true,
             }}
             onSubmit={onSubmit}
             isLoading={isPending}

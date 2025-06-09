@@ -9,7 +9,6 @@ import { useSignUpForm } from '../../model/use-sign-up-form';
 export function SignUpForm() {
     const { dictionary } = useDictionary();
     const [step, setStep] = useState(0);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [formData, setFormData] = useState<Record<string, any>>({});
 
     const {

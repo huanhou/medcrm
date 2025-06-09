@@ -90,6 +90,14 @@ export const registerUser = (data: { full_name: string; email: string; phone: st
         data,
     });
 };
+export const verifyOtp = (data: { email: string; otp: string }) => {
+    return createInstance({
+        url: API_ENDPOINTS.AUTH.VERIFY_OTP,
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        data,
+    });
+};
 
 export const authControllerGetSessionInfo = () => {
     return createInstance<GetSessionInfoDto>({
@@ -129,14 +137,14 @@ export const editFilial = (id: string, data: EditFilialDto) => {
         data,
     });
 };
-
-export const deleteFilial = (id: string) => {
-    // New API deletes by DELETE /branches/:id - single ID only
+export const deleteFilial = (ids: string[]) => {
     return createInstance<void>({
-        url: API_ENDPOINTS.FILIALS.DELETE(id),
+        url: API_ENDPOINTS.FILIALS.DELETE,  // Endpoint to delete filials (no ID in URL)
         method: "delete",
+        data: { ids },  // Send the array of IDs in the request body
     });
 };
+
 
 // ==== ROLES ====
 
@@ -256,10 +264,11 @@ export const editPermission = (id: string, data: CreatePermissionDto) => {
     });
 };
 
-export const deletePermission = (id: string) => {
+export const deletePermission = (ids: string[]) => {
     return createInstance<void>({
-        url: API_ENDPOINTS.PERMISSIONS.DELETE(id),
+        url: API_ENDPOINTS.PERMISSIONS.DELETE,  // The endpoint for deleting permissions (no single ID in URL)
         method: "delete",
+        data: { ids },  // Send the array of IDs in the request body
     });
 };
 
@@ -294,13 +303,13 @@ export const editPatient = (id: string, data: CreatePatientDto) => {
         data,
     });
 };
-
-export const deletePatient = (id: string) => {
+export const deletePatient = (fullNames: string[]) => {
     return createInstance<void>({
-        url: API_ENDPOINTS.PATIENTS.DELETE(id),
-        method: "delete",
+        url: API_ENDPOINTS.PATIENTS.DELETE,  // Use the correct endpoint for patient deletion
+        method: 'delete',
+        data: { fullNames },  // Send the array of patient names for deletion
     });
-}
+};
 
 // ==== ACTIVATION ====
 
@@ -346,12 +355,14 @@ export const editAppointment = (id: string, data: CreateAppointmentDto) => {
     });
 };
 
-export const deleteAppointment = (id: string) => {
+export const deleteAppointment = (ids: string[]) => {
     return createInstance<void>({
-        url: API_ENDPOINTS.APPOINTMENTS.DELETE(id),
+        url: API_ENDPOINTS.APPOINTMENTS.DELETE,  // Use the DELETE endpoint without the individual ID in the URL
         method: "delete",
+        data: { ids },  // Send the array of IDs in the request body
     });
 };
+
 
 // ==== SERVICES ====
 
@@ -384,13 +395,14 @@ export const editService = (id: string, data: EditServiceDto) => {
         data,
     });
 };
-
-export const deleteService = (id: string) => {
+export const deleteService = (ids: string[]) => {
     return createInstance<void>({
-        url: API_ENDPOINTS.SERVICES.DELETE(id),
+        url: API_ENDPOINTS.SERVICES.DELETE,  // Use the DELETE endpoint without the individual ID in the URL
         method: "delete",
+        data: { ids },  // Send the array of IDs in the request body
     });
 };
+
 
 // ==== EXPENSE CATEGORIES ====
 
@@ -427,10 +439,11 @@ export const editExpenseCategory = (
     });
 };
 
-export const deleteExpenseCategory = (id: string) => {
+export const deleteExpenseCategory = (ids: string[]) => {
     return createInstance<void>({
-        url: API_ENDPOINTS.EXPENSES_CATEGORIES.DELETE(id),
+        url: API_ENDPOINTS.EXPENSES_CATEGORIES.DELETE,  // Use the DELETE endpoint for deleting multiple expense categories
         method: "delete",
+        data: { ids },  // Send the array of IDs in the request body
     });
 };
 
@@ -466,12 +479,14 @@ export const editExpense = (id: string, data: CreateExpenseDto) => {
     });
 };
 
-export const deleteExpense = (id: string) => {
+export const deleteExpense = (ids: string[]) => {
     return createInstance<void>({
-        url: API_ENDPOINTS.EXPENSES.DELETE(id),
+        url: API_ENDPOINTS.EXPENSES.DELETE,  // Use the DELETE endpoint without the individual ID in the URL
         method: "delete",
+        data: { ids },  // Send the array of IDs in the request body
     });
 };
+
 
 // ==== TRANSACTIONS ====
 export const getTransactions = (

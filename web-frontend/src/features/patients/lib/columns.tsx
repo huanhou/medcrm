@@ -35,7 +35,10 @@ export const usePatientsTableColumns = () => {
             }),
             columnHelper.accessor('id', {
                 header: headers.id,
-                cell: (info) => info.getValue().slice(0, 4).toUpperCase(),
+                cell: (info) => {
+                    const value = info.getValue();
+                    return value ? value.slice(0, 4).toUpperCase() : ''; // Safely handle undefined/null
+                },
             }),
             columnHelper.accessor('fio', {
                 header: headers.fio,
@@ -53,10 +56,6 @@ export const usePatientsTableColumns = () => {
                 header: headers.description,
                 cell: (info) => info.getValue(),
             }),
-            // columnHelper.accessor('filial', {
-            //   header: headers.filial,
-            //   cell: (info) => info.getValue(),
-            // }),
             columnHelper.accessor('created_at', {
                 header: headers.registrationDate,
                 cell: (info) => DateFormat(info.getValue() as string, 'd.m.Y H:i'),

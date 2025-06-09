@@ -1,7 +1,7 @@
 export const API_ENDPOINTS = {
     AUTH: {
         REGISTER: "/register",
-        REQUEST_OTP: "/request-otp",
+        VERIFY_OTP: "/verify-otp",
         SET_PASSWORD: "/set-password",
         LOGIN: "/login",
         LOGOUT: "/logout",
@@ -28,7 +28,7 @@ export const API_ENDPOINTS = {
         GET_BY_ID: (id: string) => `/permissions/${id}`,
         CREATE: "/permissions",
         EDIT: (id: string) => `/permissions/${id}`,
-        DELETE: (id: string) => `/permissions/${id}`,
+        DELETE: '/permissions',
     },
 
     FILIALS: {
@@ -36,7 +36,7 @@ export const API_ENDPOINTS = {
         GET_BY_ID: (id: string) => `/branches/${id}`,
         CREATE: "/branches",
         EDIT: (id: string) => `/branches/${id}`,
-        DELETE: (id: string) => `/branches/${id}`,
+        DELETE: '/branches'
     },
 
     SPECIALIST: {
@@ -44,7 +44,7 @@ export const API_ENDPOINTS = {
         GET_BY_ID: (id: string) => `/specialists/${id}`,
         CREATE: "/specialists",
         EDIT: (id: string) => `/specialists/${id}`,
-        DELETE: (id: string) => `/specialists/${id}`,
+        DELETE: "/specialists"
     },
 
     PATIENTS: {
@@ -52,7 +52,7 @@ export const API_ENDPOINTS = {
         GET_BY_ID: (id: string) => `/patients/${id}`,
         CREATE: "/patients",
         EDIT: (id: string) => `/patients/${id}`,
-        DELETE: (id: string) => `/patients/${id}`,
+        DELETE: '/patients'
     },
 
     APPOINTMENTS: {
@@ -60,7 +60,7 @@ export const API_ENDPOINTS = {
         GET_BY_ID: (id: string) => `/appointments/${id}`,
         CREATE: "/appointments",
         EDIT: (id: string) => `/appointments/${id}`,
-        DELETE: (id: string) => `/appointments/${id}`,
+        DELETE: '/appointments'
     },
 
     SERVICES: {
@@ -68,7 +68,7 @@ export const API_ENDPOINTS = {
         GET_BY_ID: (id: string) => `/services/${id}`,
         CREATE: "/services",
         EDIT: (id: string) => `/services/${id}`,
-        DELETE: (id: string) => `/services/${id}`,
+        DELETE: '/services'
     },
 
     EXPENSES_CATEGORIES: {
@@ -76,7 +76,7 @@ export const API_ENDPOINTS = {
         GET_BY_ID: (id: string) => `/category_expences/${id}`,
         CREATE: "/category_expences",
         EDIT: (id: string) => `/category_expences/${id}`,
-        DELETE: (id: string) => `/category_expences/${id}`,
+        DELETE: '/category_expences'
     },
 
     EXPENSES: {
@@ -84,7 +84,7 @@ export const API_ENDPOINTS = {
         GET_BY_ID: (id: string) => `/expences/${id}`,
         CREATE: "/expences",
         EDIT: (id: string) => `/expences/${id}`,
-        DELETE: (id: string) => `/expences/${id}`,
+        DELETE: '/expences'
     },
 
     TRANSACTIONS: {

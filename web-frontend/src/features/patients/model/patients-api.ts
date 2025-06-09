@@ -20,17 +20,18 @@ export function useGetPatientByIdQuery(id: string) {
 
 export function useDeletePatientMutation() {
     return useMutation({
-        mutationFn: async (id: string) => {
-            return await deletePatient(id); // Ensure you're deleting one patient at a time
+        mutationFn: async (ids: string[]) => {
+            // ids will be an array of patient IDs you want to delete
+            console.log('Deleting patients with IDs:', ids);  // Log the IDs being deleted
+            return await deletePatient(ids);  // Pass the array of IDs to deletePatient
         },
         onSuccess: () => {
-            // Invalidate the patients query after a successful deletion
+            // Invalidate the query for the patients list to refresh the data
             queryClient.invalidateQueries({ queryKey: ['patients'] });
         },
         onError: (error) => {
-            // Optionally handle error (you can show an error message here)
-            console.error("Error deleting patient:", error);
+            // Handle error in case the delete request fails
+            console.error("Error deleting patient(s):", error);
         },
     });
 }
-

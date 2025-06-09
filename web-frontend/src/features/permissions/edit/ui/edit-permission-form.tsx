@@ -55,7 +55,7 @@ export const EditPermissionForm = ({ permissionId }: { permissionId: string }) =
             onSubmit={onSubmit}
             isLoading={isPending}
             buttonText={buttons.save}
-            isCodeDisabled={true} // Disable code field (it's not part of the form in edit mode)
+            isCodeDisabled={false} // Disable code field (it's not part of the form in edit mode)
         />
     );
 };

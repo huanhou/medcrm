@@ -42,12 +42,12 @@ export const PatientForm = ({ defaultValues, onSubmit, buttonText, isLoading }: 
                 <Input
                     label={sharedForm.labels.fullName}
                     inputProps={{
-                        ...register('fio'),
+                        ...register('name'),
                         type: 'text',
                         placeholder: sharedForm.placeholders.fullName,
-                        defaultValue: defaultValues.fio,
+                        defaultValue: defaultValues.name,
                     }}
-                    error={errors.fio?.message}
+                    error={errors.name?.message}
                 />
                 <PhoneInput
                     label={dictionary.SignUp.phone}
@@ -70,10 +70,10 @@ export const PatientForm = ({ defaultValues, onSubmit, buttonText, isLoading }: 
                 <Select
                     label={sharedForm.labels.branch}
                     icon={<ChevronDownIcon className='size-6 text-gray-6' />}
-                    error={errors.filial_id?.message}
+                    error={errors.branch?.message}
                     inputProps={{
-                        ...register('filial_id'),
-                        defaultValue: defaultValues.filial_id,
+                        ...register('branch'),
+                        defaultValue: defaultValues.branch,
                     }}
                 >
                     <option value=''>{sharedForm.placeholders.branch}</option>

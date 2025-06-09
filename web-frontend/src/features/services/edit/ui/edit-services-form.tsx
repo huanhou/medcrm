@@ -61,7 +61,7 @@ export const EditServiceForm = ({ serviceId }: { serviceId: string }) => {
                     name: serviceToEdit?.name,
                     description: serviceToEdit?.description,
                     price: serviceToEdit?.price?.toString() || '',
-                    is_active: serviceToEdit?.is_active,
+                    isAvailable: serviceToEdit?.isAvailable,
                 }}
                 onSubmit={onSubmit}
                 isLoading={isPending}

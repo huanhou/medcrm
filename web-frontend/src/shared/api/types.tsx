@@ -204,32 +204,32 @@ export interface CreatePatientResponse {
 
 export interface Appointment {
     id: string;
-    patient_id: string;
-    specialist_id: string;
-    date_time: string;
+    patient: string;
+    specialist: string;
+    appointmentDateTime: string;
     status: string;
     created_at: string;
     deleted_at: string | null;
     comment: string;
     Patient: {
         id: string;
-        fio: string;
+        name: string;
         phone: string;
         address: string;
-        filial_id: string;
+        branch: string;
         iin: string;
         created_at: string;
         deleted_at: string | null;
     };
     Specialist: {
         id: string;
-        fio: string;
-        phone_number: string;
+        name: string;
+        phoneNumber: string;
         email: string;
         iin: string;
         status: "active" | "inactive" | string;
-        Internal: boolean;
-        filial_id: string;
+        specialistType: 'Внешний' |'Внутренний';
+        branch: string;
         Filial: Filial;
     };
     Transactions: any[];
@@ -238,11 +238,11 @@ export interface Appointment {
 export type GetAppointmentsResponse = Appointment[];
 
 export interface CreateAppointmentDto {
-    patient_id: string;
-    specialist_id: string;
-    date_time: string;
+    patient: string;
+    specialist: string;
+    appointmentDateTime: string;
     comment: string;
-    service_ids: string[];
+    service: string[];
     status: string;
 }
 
@@ -251,7 +251,7 @@ export interface Service {
     name: string;
     price: number;
     description: string;
-    is_active: boolean;
+    isAvailable: boolean;
     created_at: string;
     deleted_at: string | null;
 }
@@ -261,13 +261,13 @@ export type GetServicesResponse = Service[];
 export interface CreateServiceDto {
     name: string;
     description: string;
-    is_active: boolean;
+    isAvailable: boolean;
 }
 
 export interface EditServiceDto {
     name?: string;
     description?: string;
-    is_active?: boolean;
+    isAvailable?: boolean;
 }
 
 export interface ExpenseCategory {

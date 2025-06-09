@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { getPermissions, deletePermission } from '@/shared/api/generated';
-
+import { queryClient } from '@/shared/api/query-client';
 export function useGetPermissionsQuery() {
     return useQuery({
         queryKey: ['permissions'],
@@ -13,9 +13,13 @@ export function useGetPermissionsQuery() {
 
 export function useDeletePermissionMutation() {
     return useMutation({
-        mutationFn: async (id: string) => { // change from string[] to string
-            return await deletePermission(id);  // Ensure API supports single ID deletion
+        mutationFn: async (ids: string[]) => {  // Change from string to string[] to handle multiple IDs
+            return await deletePermission(ids);  // Pass the array of IDs to deletePermission
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['permissions'] });
         },
     });
 }
+
 

@@ -1,23 +1,21 @@
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRegisterMutation, useSetPasswordMutation, useVerifyOtpMutation } from "@/features/auth/model/model";
 import { useForm } from "react-hook-form";
-import { Step1FormType, Step2FormType, Step3FormType } from "@/features/auth/model/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ROUTES } from "@/shared/constants/routs";
+import { Step1FormType, Step2FormType, Step3FormType } from "@/features/auth/model/types";
 import toast from "react-hot-toast";
 import { ERROR_MESSAGE } from "@/shared/constants/errors";
-import { useState, useEffect } from "react";
-import { useRegisterMutation, useSetPasswordMutation } from "@/features/auth/model/model";
 import { getSchema } from "./schema";
 
 type CombinedFormType = Step1FormType & Step2FormType & Step3FormType;
 
 export const useSignUpForm = (step: number, initialFormData: Record<string, any>) => {
     const router = useRouter();
-
-    const { mutateAsync: registerUser, isPending: isRegistering } = useRegisterMutation();
-    const { mutateAsync: setPassword, isPending: isSetPasswordPending } = useSetPasswordMutation();
-
     const [formData, setFormData] = useState<Partial<CombinedFormType>>(initialFormData);
+    const { mutateAsync: registerUser, isPending: isRegistering } = useRegisterMutation();
+    const { mutateAsync: verifyOtp, isPending: isOtpVerifying } = useVerifyOtpMutation();
+    const { mutateAsync: setPassword, isPending: isSetPasswordPending } = useSetPasswordMutation();
 
     useEffect(() => {
         setFormData(initialFormData);
@@ -26,12 +24,11 @@ export const useSignUpForm = (step: number, initialFormData: Record<string, any>
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
         setError,
         trigger,
-        setValue,
         getValues,
+        setValue,
     } = useForm<CombinedFormType>({
         resolver: zodResolver(getSchema(step ?? 1)),
         defaultValues: formData,
@@ -46,7 +43,7 @@ export const useSignUpForm = (step: number, initialFormData: Record<string, any>
             if (step === 0) {
                 const { fio, email, phone_number } = currentValues;
                 if (!fio || !email || !phone_number) {
-                    setError("root", { type: "manual", message: "Пожалуйста, заполните все поля." });
+                    setError("root", { type: "manual", message: "Please fill in all fields." });
                     return false;
                 }
                 try {
@@ -55,16 +52,15 @@ export const useSignUpForm = (step: number, initialFormData: Record<string, any>
                         email,
                         phone: phone_number,
                     });
-                    toast.success("Пользователь зарегистрирован. Код подтверждения отправлен на email.");
+                    toast.success("User registered. OTP sent to email.");
                     return true;
                 } catch (error: any) {
-                    const message = error.response?.data?.message || "Ошибка регистрации";
+                    const message = error.response?.data?.message || "Registration error";
                     setError("root", { type: "manual", message });
                     toast.error(message);
                     return false;
                 }
             }
-
             return true;
         }
         return false;
@@ -73,7 +69,6 @@ export const useSignUpForm = (step: number, initialFormData: Record<string, any>
     const onSubmit = async (data: Partial<CombinedFormType>) => {
         try {
             const finalData = { ...formData, ...data };
-
             const payload: Record<string, any> = {};
 
             if ("email" in finalData) payload.email = finalData.email;
@@ -83,28 +78,22 @@ export const useSignUpForm = (step: number, initialFormData: Record<string, any>
             if (step === 1 || step === 2) {
                 const { email, otp, password } = payload;
                 if (!email || !otp || !password) {
-                    setError("root", {
-                        type: "manual",
-                        message: "Пожалуйста, заполните все обязательные поля (email, код подтверждения и пароль).",
-                    });
+                    setError("root", { type: "manual", message: "Please fill in all required fields (email, OTP, password)." });
                     return;
                 }
                 await setPassword({ email, otp, password });
-                toast.success("Регистрация успешно завершена.");
-                router.push(`${ROUTES.home}?auth=true`);
+                toast.success("Registration completed successfully.");
+                router.push("/home?auth=true");
                 return;
             }
         } catch (error: any) {
             if (error.response && error.response.data) {
                 const serverError = error.response.data;
-                const message = serverError.message || "Произошла ошибка на сервере.";
+                const message = serverError.message || "Server error occurred.";
                 setError("root", { type: "server", message });
                 toast.error(message);
             } else if (error instanceof Error) {
-                setError("root", {
-                    type: "server",
-                    message: "Неизвестная ошибка, попробуйте позже.",
-                });
+                setError("root", { type: "server", message: "Unknown error, please try again later." });
             } else {
                 console.error(ERROR_MESSAGE.unknown, error);
             }
@@ -114,13 +103,11 @@ export const useSignUpForm = (step: number, initialFormData: Record<string, any>
     return {
         register,
         handleSubmit: handleSubmit(onSubmit),
-        watch,
         errors,
-        isPending: isRegistering || isSetPasswordPending,
+        isPending: isRegistering || isOtpVerifying || isSetPasswordPending,
         trigger,
         setValue,
         getValues,
         handleNextStep,
-        formData,
     };
 };

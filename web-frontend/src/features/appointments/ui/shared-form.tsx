@@ -60,33 +60,33 @@ export const AppointmentForm = ({ defaultValues, onSubmit, buttonText, isLoading
             <form onSubmit={handleSubmit} className='space-y-4 p-3.5'>
                 <Select
                     label={sharedForm.labels.patient}
-                    error={errors.patient_id?.message}
+                    error={errors.patient?.message}
                     icon={<ChevronDownIcon className='size-6 text-gray-6' />}
                     inputProps={{
-                        ...register('patient_id'),
-                        defaultValue: defaultValues.patient_id,
+                        ...register('patient'),
+                        defaultValue: defaultValues.patient,
                     }}
                 >
                     <option value=''>{sharedForm.placeholders.patient}</option>
                     {patients?.map((patient) => (
                         <option key={patient.id} value={patient.id}>
-                            {patient.fio}
+                            {patient.name}
                         </option>
                     ))}
                 </Select>
                 <Select
                     label={sharedForm.labels.doctor}
-                    error={errors.specialist_id?.message}
+                    error={errors.specialist?.message}
                     icon={<ChevronDownIcon className='size-6 text-gray-6' />}
                     inputProps={{
-                        ...register('specialist_id'),
-                        defaultValue: defaultValues.specialist_id,
+                        ...register('specialist'),
+                        defaultValue: defaultValues.specialist,
                     }}
                 >
                     <option value=''>{sharedForm.placeholders.doctor}</option>
                     {specialists?.map((specialist) => (
                         <option key={specialist.id} value={specialist.id}>
-                            {specialist.fio}
+                            {specialist.name}
                         </option>
                     ))}
                 </Select>
@@ -98,11 +98,11 @@ export const AppointmentForm = ({ defaultValues, onSubmit, buttonText, isLoading
                     label={sharedForm.labels.service}
                     placeholder={sharedForm.placeholders.service}
                     inputProps={{
-                        ...register('service_ids'),
+                        ...register('service'),
                         type: 'text',
                         disabled: isFormSaved,
                     }}
-                    error={errors.service_ids?.message}
+                    error={errors.service?.message}
                     disabled={isFormSaved}
                 />
 
@@ -110,11 +110,11 @@ export const AppointmentForm = ({ defaultValues, onSubmit, buttonText, isLoading
                     pastDatesDisabled={true}
                     className='w-full rounded-[7px] border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal outline-none transition focus:border-primary active:border-primary dark:border-dark-3 dark:bg-dark-2 dark:focus:border-primary'
                     label={sharedForm.labels.dateTime}
-                    error={errors.date_time?.message}
-                    value={watch('date_time')}
+                    error={errors.appointmentDateTime?.message}
+                    value={watch('appointmentDateTime')}
                     placeholder={sharedForm.placeholders.dateTime}
                     onChange={(date) => {
-                        setValue('date_time', date ? date.toISOString() : '', {
+                        setValue('appointmentDateTime', date ? date.toISOString() : '', {
                             shouldValidate: true,
                             shouldDirty: true,
                         });

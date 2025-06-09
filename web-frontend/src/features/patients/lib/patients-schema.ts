@@ -3,7 +3,7 @@ import { DictionaryType } from '@/shared/config/i18n';
 
 export const createPatientSchema = (dictionary: DictionaryType) =>
     z.object({
-        fio: z
+        name: z
             .string()
             .refine(
                 (value) => value.split(' ').length >= 2 && value.split(' ').length <= 3,
@@ -19,7 +19,7 @@ export const createPatientSchema = (dictionary: DictionaryType) =>
             .refine((value) => /^\d+$/.test(value), dictionary.patientSchema.iin.number)
             .refine((value) => value.toString().length === 12, dictionary.patientSchema.iin.length),
         // address: z.string().min(1, dictionary.patientSchema.address.min),
-        filial_id: z.string().min(1, dictionary.patientSchema.filial_id.min),
+        branch: z.string().min(1, dictionary.patientSchema.filial_id.min),
         description: z.string().min(1, dictionary.expenseCategorySchema.description.required),
     });
 

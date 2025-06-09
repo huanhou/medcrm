@@ -9,7 +9,7 @@ export const createServiceSchema = (dictionary: DictionaryType) =>
             .string()
             .min(1, dictionary.serviceSchema.price.required)
             .regex(/^\d+(\.\d{0,2})?$/, dictionary.serviceSchema.price.invalid),
-        is_active: z.boolean(),
+        isAvailable: z.boolean(),
     });
 
 export type ServiceSchema = z.infer<ReturnType<typeof createServiceSchema>>;

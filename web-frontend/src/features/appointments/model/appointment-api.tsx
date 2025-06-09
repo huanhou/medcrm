@@ -27,10 +27,10 @@ export function useGetAppointmentByIdQuery(id: string) {
         },
     });
 }
-
 export function useDeleteAppointmentMutation() {
     return useMutation({
         mutationFn: async (ids: string[]) => {
+            console.log('Deleting appointments with IDs:', ids);  // Log the IDs to debug
             return await deleteAppointment(ids);
         },
         onSuccess: () => {

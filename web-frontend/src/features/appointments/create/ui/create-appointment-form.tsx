@@ -15,10 +15,10 @@ export const CreateAppointmentForm = () => {
     const { dictionary } = useDictionary();
     const { buttons, successNotifications, errorNotifications } = dictionary;
     const onSubmit = (data: AppointmentSchema) => {
-        const { date_time, ...rest } = data;
-        const formattedDateTime = new Date(date_time).toISOString();
+        const { appointmentDateTime, ...rest } = data;
+        const formattedDateTime = new Date(appointmentDateTime).toISOString();
         create(
-            { ...rest, date_time: formattedDateTime },
+            { ...rest, appointmentDateTime: formattedDateTime },
             {
                 onSuccess: () => {
                     queryClient.invalidateQueries({ queryKey: ['appointments'] });
@@ -35,9 +35,9 @@ export const CreateAppointmentForm = () => {
     return (
         <AppointmentForm
             defaultValues={{
-                patient_id: '',
-                specialist_id: '',
-                date_time: '',
+                patient: '',
+                specialist: '',
+                appointmentDateTime: '',
                 status: '',
             }}
             onSubmit={onSubmit}
