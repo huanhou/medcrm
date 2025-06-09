@@ -1,0 +1,1 @@
+export { FinancialReportTable } from './table';

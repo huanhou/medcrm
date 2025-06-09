@@ -30,10 +30,11 @@ export const useStaffTableColumns = () => {
                         className='checkbox'
                     />
                 ),
+                size: 10,
             }),
             columnHelper.accessor('id', {
                 header: headers.id,
-                cell: (info) => info.getValue().slice(0, 4).toUpperCase(),
+                cell: (info) => String(info.getValue()).slice(0, 4).toUpperCase(),
             }),
             columnHelper.accessor('fio', {
                 header: headers.name,
@@ -64,7 +65,7 @@ export const useStaffTableColumns = () => {
                 cell: (info) => (
                     <div
                         className={`${
-                            info.row.original.status === sharedForm.active ? 'bg-[#5BB79A] text-white' : 'bg-gray-1 text-gray-6'
+                            info.row.original.status === sharedForm.active ? 'bg-[#5BB79A] text-white' : 'bg-gray-1  text-gray-6'
                         } p-2 rounded text-center`}
                     >
                         {info.getValue()}

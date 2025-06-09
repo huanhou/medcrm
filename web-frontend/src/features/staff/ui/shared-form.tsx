@@ -1,158 +1,201 @@
 'use client';
 
-import { useState } from 'react';
 import { UiLayout, Input, Button, Select, PhoneInput } from '@/shared/ui';
-import { EyeIcon, EyeSlashIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import { useDictionary } from '@/shared/lib/hooks';
+import { StaffSchemaType } from '@/features/staff/model/staff-schema';
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
+import { useUnsavedChanges } from '@/shared/lib/hooks';
+import { useStaffForm } from '../model/use-staff-form';
+import { ROUTES } from '@/shared/constants/routs';
+import { useRouter } from 'next/navigation';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
-export const StaffForm = () => {
-    const { dictionary } = useDictionary();
+interface StaffFormProps {
+    defaultValues: Partial<StaffSchemaType>;
+    onSubmit: (data: StaffSchemaType) => void;
+    isPasswordDisabled?: boolean;
+    buttonText: string;
+    isLoading: boolean;
+    isPasswordVisible?: boolean;
+    setIsPasswordVisible?: (value: boolean) => void;
+}
+
+export const StaffForm = ({
+                              defaultValues,
+                              onSubmit,
+                              isPasswordDisabled = false,
+                              buttonText,
+                              isLoading,
+                              isPasswordVisible = false,
+                              setIsPasswordVisible,
+                          }: StaffFormProps) => {
+    const {
+        handleSubmit,
+        registerWithMask,
+        errors,
+        isDirty,
+        isFormSaved,
+        filials,
+        roles,
+        statuses,
+        dictionary,
+        register,
+    } = useStaffForm({ defaultValues, onSubmit, isPasswordDisabled });
+
+    const router = useRouter();
     const { sharedForm } = dictionary;
+    const shouldPreventNavigation = () => isDirty && !isFormSaved;
+    useUnsavedChanges({ isDirty, isFormSaved, shouldPreventNavigation });
 
-    const [formData, setFormData] = useState({
-        fio: '',
-        email: '',
-        phone_number: '',
-        address: '',
-        filial_id: '',
-        status: '',
-        role_id: '',
-        password: '',
-    });
-
-    const [isDirty, setIsDirty] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-    const handleChange = (field: string, value: string) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
-        setIsDirty(true);
+    const handleNavigateAway = () => {
+        router.push(ROUTES.staff);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setTimeout(() => {
-            alert('Форма сохранена (на клиенте)');
-            setIsSubmitting(false);
-            setIsDirty(false);
-        }, 1000);
-    };
+    const heading =
+        buttonText === sharedForm.buttonText.save
+            ? sharedForm.headings.edit
+            : sharedForm.headings.add;
 
     return (
         <UiLayout>
-            <div className='border-b border-stroke px-6.5 py-4 dark:border-dark-3'>
-            <h1>{sharedForm.headings.add}</h1>
+            <div className="border-b border-stroke px-6.5 py-4 dark:border-dark-3">
+                <h1>{heading}</h1>
             </div>
-            <form onSubmit={handleSubmit} className='space-y-4 p-3.5'>
-    <Input
-        label={sharedForm.labels.fullName}
-    inputProps={{
-        type: 'text',
-            placeholder: sharedForm.placeholders.fullName,
-            value: formData.fio,
-            onChange: e => handleChange('fio', e.target.value),
-    }}
-    />
+            <form onSubmit={handleSubmit} className="space-y-4 p-3.5">
+                <Input
+                    label={sharedForm.labels.fullName}
+                    inputProps={{
+                        ...register('fullName'),  // Changed to full_name
+                        type: 'text',
+                        placeholder: sharedForm.placeholders.fullName,
+                    }}
+                    error={errors.fullName?.message}  // Changed to full_name
+                />
 
-    <Input
-    label={sharedForm.labels.password}
-    inputProps={{
-        type: isPasswordVisible ? 'text' : 'password',
-            placeholder: sharedForm.placeholders.password,
-            value: formData.password,
-            onChange: e => handleChange('password', e.target.value),
-    }}
-    icon={
-        isPasswordVisible ? (
-            <EyeIcon className='size-6 text-gray-6 cursor-pointer' onClick={() => setIsPasswordVisible(false)} />
-) : (
-        <EyeSlashIcon className='size-6 text-gray-6 cursor-pointer' onClick={() => setIsPasswordVisible(true)} />
-)
-}
-    />
+                {!isPasswordDisabled && (
+                    <Input
+                        label={sharedForm.labels.password}
+                        inputProps={{
+                            ...register('password'),
+                            type: isPasswordVisible ? 'text' : 'password',
+                            placeholder: sharedForm.placeholders.password,
+                        }}
+                        icon={
+                            isPasswordVisible ? (
+                                <EyeIcon
+                                    className="size-6 text-gray-6 cursor-pointer"
+                                    onClick={() => setIsPasswordVisible?.(false)}
+                                />
+                            ) : (
+                                <EyeSlashIcon
+                                    className="size-6 text-gray-6 cursor-pointer"
+                                    onClick={() => setIsPasswordVisible?.(true)}
+                                />
+                            )
+                        }
+                        error={errors.password?.message}
+                    />
+                )}
 
-    <Input
-    label={sharedForm.labels.email}
-    inputProps={{
-        type: 'email',
-            placeholder: sharedForm.placeholders.email,
-            value: formData.email,
-            onChange: e => handleChange('email', e.target.value),
-    }}
-    />
+                <Input
+                    label={sharedForm.labels.email}
+                    inputProps={{
+                        ...register('email'),
+                        type: 'email',
+                        placeholder: sharedForm.placeholders.email,
+                    }}
+                    error={errors.email?.message}
+                />
 
                 <PhoneInput
                     label={sharedForm.labels.phoneNumber}
-                    registerWithMask={() => ({
-                        name: 'phone_number',
-                        onChange: (e: React.ChangeEvent<HTMLInputElement>) => handleChange('phone_number', e.target.value),
-                        value: formData.phone_number,
-                    })}
-                    name='phone_number'
+                    registerWithMask={registerWithMask}
+                    name="phone"
+                    error={errors.phone?.message}
+                    className="mb-4.5"
                     placeholder={sharedForm.placeholders.phoneNumber}
                 />
 
-
                 <Input
-    label={sharedForm.labels.address}
-    inputProps={{
-        type: 'text',
-            placeholder: sharedForm.placeholders.address,
-            value: formData.address,
-            onChange: e => handleChange('address', e.target.value),
-    }}
-    />
+                    label={sharedForm.labels.address}
+                    inputProps={{
+                        ...register('address'),
+                        type: 'text',
+                        placeholder: sharedForm.placeholders.address,
+                    }}
+                    error={errors.address?.message}
+                />
 
-    <Select
-    label={sharedForm.labels.branch}
-    inputProps={{
-        value: formData.filial_id,
-            onChange: e => handleChange('filial_id', e.target.value),
-    }}
-    icon={<ChevronDownIcon className='size-6 text-gray-6' />}
->
-    <option value=''>{sharedForm.placeholders.branch}</option>
-        <option value='1'>Филиал 1</option>
-    <option value='2'>Филиал 2</option>
-    </Select>
+                <Select
+                    label={sharedForm.labels.branch}
+                    icon={<ChevronDownIcon className="size-6 text-gray-6" />}
+                    error={errors.branch?.message}
+                    inputProps={{
+                        ...register('branch'),  // Correctly mapped to branch
+                        defaultValue: defaultValues.branch,
+                    }}
+                >
+                    <option value="">{sharedForm.placeholders.branch}</option>
+                    {Array.isArray(filials) ? (
+                        filials.map((filial) => (
+                            <option key={filial.name} value={filial.name}>{filial.name}</option>
+                        ))
+                    ) : (
+                        <option disabled>Загрузка филиалов...</option>
+                    )}
+                </Select>
 
-    <Select
-    label={sharedForm.labels.status}
-    inputProps={{
-        value: formData.status,
-            onChange: e => handleChange('status', e.target.value),
-    }}
-    icon={<ChevronDownIcon className='size-6 text-gray-6' />}
->
-    <option value='active'>Активный</option>
-        <option value='inactive'>Неактивный</option>
-        </Select>
+                <Select
+                    label={sharedForm.labels.status}
+                    icon={<ChevronDownIcon className="size-6 text-gray-6" />}
+                    error={errors.status?.message}
+                    inputProps={{
+                        ...register('status'),
+                        defaultValue: defaultValues.status,
+                    }}
+                >
+                    <option value="">{sharedForm.placeholders.status}</option>
+                    {statuses.map((status) => (
+                        <option key={status.value} value={status.value}>
+                            {status.label}
+                        </option>
+                    ))}
+                </Select>
 
-        <Select
-    label={sharedForm.labels.role}
-    inputProps={{
-        value: formData.role_id,
-            onChange: e => handleChange('role_id', e.target.value),
-    }}
-    icon={<ChevronDownIcon className='size-6 text-gray-6' />}
->
-    <option value='admin'>Админ</option>
-        <option value='doctor'>Врач</option>
-        </Select>
+                <Select
+                    label={sharedForm.labels.role}
+                    icon={<ChevronDownIcon className="size-6 text-gray-6" />}
+                    error={errors.role?.message}
+                    inputProps={{
+                        ...register('role'),  // Correctly mapped to role
+                        defaultValue: defaultValues.role,
+                    }}
+                >
+                    <option value=''>{sharedForm.labels.role}</option>
+                    {roles?.map((role) => (
+                        <option key={role.name} value={role.name}>{role.name}</option>
+                    ))}
+                </Select>
 
-        <div className='flex justify-end gap-3'>
-    <Button
-        type='submit'
-    disabled={!isDirty || isSubmitting}
-    isLoading={isSubmitting}
-    className='rounded-[7px]'
-    variant={isDirty ? 'primary' : 'outlined'}
-        >
-        {sharedForm.buttonText.save}
-        </Button>
-        </div>
-        </form>
+                <div className="flex gap-2 items-center ml-auto justify-end">
+                    <Button
+                        onClick={handleNavigateAway}
+                        className="rounded-[7px]"
+                        variant="outlined"
+                        type="button"
+                    >
+                        {sharedForm.buttonText.cancel}
+                    </Button>
+                    <Button
+                        isLoading={isLoading}
+                        disabled={isLoading}
+                        variant="primary"
+                        type="submit"
+                        className="rounded-[7px]"
+                    >
+                        {buttonText}
+                    </Button>
+                </div>
+            </form>
         </UiLayout>
-);
+    );
 };

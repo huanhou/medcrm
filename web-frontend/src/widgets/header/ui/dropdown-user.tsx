@@ -1,29 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ClickOutside } from '@/shared/ui';
+import { useLogoutMutation } from '@/widgets/header/model/use-logout-query';
 import { useAvatar } from '@/shared/helpers/get-random-avatar';
+import { useLocalSession } from '@/shared/session/session-provider';
 import { useDictionary } from '@/shared/lib/hooks';
-
 export const DropdownUser = () => {
     const { dictionary } = useDictionary();
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const { mutate: logout } = useLogoutMutation();
+    const { user, isLoading, refetchSession } = useLocalSession();
 
-    const user = {
-        fio: 'Demo User',
-        phone_number: '+77001112233',
-        role: 'Admin',
-        filial: 'Astana Clinic',
-        id: '123',
+    useEffect(() => {
+        if (!user && !isLoading) {
+            refetchSession();
+        }
+    }, [user, isLoading, refetchSession]);
+
+    const handleLogout = async () => {
+        logout();
     };
 
-    const avatarImage = useAvatar(user.id);
+    const avatarImage = useAvatar(user?.id ? String(user.id) : undefined);
+    console.log("Dropdown user:", user);
+    if (!user) return null;
 
-    const handleLogout = () => {
-        console.log('Logout clicked');
-    };
+
+    const { fio, phone_number, role, filial } = user;
 
     return (
         <ClickOutside onClick={() => setDropdownOpen(false)} className='relative'>
@@ -34,7 +40,10 @@ export const DropdownUser = () => {
                   width={112}
                   height={112}
                   src={avatarImage}
-                  style={{ width: 'auto', height: 'auto' }}
+                  style={{
+                      width: 'auto',
+                      height: 'auto',
+                  }}
                   alt='User'
                   className='overflow-hidden rounded-full'
               />
@@ -42,7 +51,8 @@ export const DropdownUser = () => {
         </span>
 
                 <span className='flex items-center gap-2 font-medium text-dark dark:text-dark-6'>
-          <span className='hidden lg:block'>{user.fio}</span>
+          <span className='hidden lg:block'>{fio}</span>
+
           <svg
               className={`fill-current duration-200 ease-in ${dropdownOpen && 'rotate-180'}`}
               width='20'
@@ -62,7 +72,9 @@ export const DropdownUser = () => {
             </Link>
 
             {dropdownOpen && (
-                <div className='absolute right-0 mt-7.5 w-[280px] rounded-lg border-[0.5px] border-stroke bg-white shadow-default dark:border-dark-3 dark:bg-gray-dark'>
+                <div
+                    className={`absolute right-0 mt-7.5 flex w-[280px] flex-col rounded-lg border-[0.5px] border-stroke bg-white shadow-default dark:border-dark-3 dark:bg-gray-dark`}
+                >
                     <div className='flex items-center gap-2.5 px-5 pb-5.5 pt-3.5'>
             <span className='relative block h-12 w-12 rounded-full'>
               {avatarImage && (
@@ -70,21 +82,25 @@ export const DropdownUser = () => {
                       width={112}
                       height={112}
                       src={avatarImage}
-                      style={{ width: 'auto', height: 'auto' }}
+                      style={{
+                          width: 'auto',
+                          height: 'auto',
+                      }}
                       alt='User'
                       className='overflow-hidden rounded-full'
                   />
               )}
+
                 <span className='absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-green dark:border-gray-dark'></span>
             </span>
+
                         <span className='block'>
-              <span className='block font-medium text-dark dark:text-white'>{user.fio}</span>
-              <span className='block font-medium text-dark-4 dark:text-dark-6'>{user.phone_number}</span>
-              <span className='block font-medium text-dark-4 dark:text-dark-6'>{user.filial}</span>
-              <span className='block font-medium text-dark-4 dark:text-dark-6'>{user.role}</span>
+              <span className='block font-medium text-dark dark:text-white'>{fio}</span>
+              <span className='block font-medium text-dark-4 dark:text-dark-6'>{phone_number}</span>
+              <span className='block font-medium text-dark-4 dark:text-dark-6'>{filial}</span>
+              <span className='block font-medium text-dark-4 dark:text-dark-6'>{role}</span>
             </span>
                     </div>
-
                     <ul className='flex flex-col gap-1 border-y-[0.5px] border-stroke p-2.5 dark:border-dark-3'>
                         <li>
                             <Link
@@ -116,7 +132,6 @@ export const DropdownUser = () => {
                             </Link>
                         </li>
                     </ul>
-
                     <div className='p-2.5'>
                         <button
                             onClick={handleLogout}

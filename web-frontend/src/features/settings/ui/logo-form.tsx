@@ -1,48 +1,54 @@
 'use client';
 
+import { ImageUpload } from '@/shared/ui';
 import Image from 'next/image';
+import { useSettingsForm } from '../model/use-settings-form';
 import { useState, useEffect } from 'react';
-import { Button, ImageUpload } from '@/shared/ui';
+import { useEditSettings } from '../model/api';
+import { Button } from '@/shared/ui';
 import { useDictionary } from '@/shared/lib/hooks';
 
 export const LogoForm = () => {
+    const { data } = useSettingsForm();
     const { dictionary } = useDictionary();
+    const [logoFile, setLogoFile] = useState<File | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [isChanged, setIsChanged] = useState<boolean>(false);
+    const [originalLogo, setOriginalLogo] = useState<string | null>(null);
+    const [imageError, setImageError] = useState<boolean>(false);
 
     const fallbackLogoUrl = '/assets/logo/logo.svg';
 
-    const [logoFile, setLogoFile] = useState<File | null>(null);
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    const [originalLogo, setOriginalLogo] = useState<string>(fallbackLogoUrl);
-    const [isChanged, setIsChanged] = useState<boolean>(false);
-    const [imageError, setImageError] = useState<boolean>(false);
+    useEffect(() => {
+        if (data?.logo && !originalLogo) {
+            setOriginalLogo(data.logo);
+        }
+    }, [data?.logo, originalLogo]);
 
     const handleImageChange = (file: File | null) => {
         if (file) {
-            const url = URL.createObjectURL(file);
             setLogoFile(file);
+            const url = URL.createObjectURL(file);
             setPreviewUrl(url);
             setIsChanged(true);
             setImageError(false);
         } else {
             setLogoFile(null);
             setPreviewUrl(null);
-            setIsChanged(false);
+            setIsChanged(originalLogo !== null);
             setImageError(false);
         }
     };
 
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (logoFile) {
-            alert('Логотип успешно загружен (на клиенте)');
-            setOriginalLogo(previewUrl || fallbackLogoUrl);
-            setIsChanged(false);
-        }
-    };
 
-    const handleImageError = () => {
-        console.error('Ошибка загрузки изображения');
-        setImageError(true);
+        if (logoFile) {
+            const formData = new FormData();
+            formData.append('file', logoFile)
+            setIsChanged(false);
+            setOriginalLogo(previewUrl);
+        }
     };
 
     useEffect(() => {
@@ -53,7 +59,14 @@ export const LogoForm = () => {
         };
     }, [previewUrl]);
 
-    const logoUrl: string = previewUrl || (imageError ? fallbackLogoUrl : originalLogo);
+    const logoUrl = previewUrl || (imageError ? fallbackLogoUrl : data?.logo || fallbackLogoUrl);
+
+    const isSaveButtonDisabled =  !isChanged || (!logoFile && !data?.logo);
+
+    const handleImageError = () => {
+        console.error('Ошибка загрузки изображения:', data?.logo);
+        setImageError(true);
+    };
 
     return (
         <div className='col-span-5 xl:col-span-2'>
@@ -77,12 +90,10 @@ export const LogoForm = () => {
                                 />
                             </div>
                             <div>
-                <span className='mb-1.5 font-medium text-dark dark:text-white'>
-                  {dictionary.settings.logo.upload}
-                </span>
-                                {imageError && (
+                                <span className='mb-1.5 font-medium text-dark dark:text-white'>{dictionary.settings.logo.upload}</span>
+                                {imageError && data?.logo && (
                                     <p className='text-xs text-red-500'>
-                                        Не удалось загрузить изображение. Используется запасное изображение.
+                                        Не удалось загрузить изображение с сервера. Используется запасное изображение.
                                     </p>
                                 )}
                             </div>
@@ -107,7 +118,8 @@ export const LogoForm = () => {
                                     !isChanged ? 'opacity-60 cursor-not-allowed' : 'shadow-md hover:shadow-lg'
                                 }`}
                                 type='submit'
-                                disabled={!isChanged}
+                                disabled={isSaveButtonDisabled}
+
                                 variant={isChanged ? 'primary' : 'outlined'}
                             >
                                 {dictionary.sharedForm.buttonText.save}

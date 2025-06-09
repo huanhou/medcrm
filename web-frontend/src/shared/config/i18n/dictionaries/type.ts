@@ -1,2 +1,2 @@
-import kz from "./kz.json";
-export type DictionaryType = typeof kz;
+import  ru from "./ru.json";
+export type DictionaryType = typeof ru;

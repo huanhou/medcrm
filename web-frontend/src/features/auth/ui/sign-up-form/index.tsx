@@ -4,27 +4,34 @@ import { useState } from 'react';
 import { Input, Button, PhoneInput } from '@/shared/ui';
 import { useDictionary } from '@/shared/lib/hooks';
 import { useHookFormMask } from 'use-mask-input';
-import Image from 'next/image';
-import { useForm } from 'react-hook-form';
+import { useSignUpForm } from '../../model/use-sign-up-form';
 
 export function SignUpForm() {
     const { dictionary } = useDictionary();
     const [step, setStep] = useState(0);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [formData, setFormData] = useState<Record<string, any>>({});
 
     const {
-        register,
         handleSubmit,
-        formState: { errors },
-    } = useForm();
+        isPending,
+        errors: formErrors,
+        register,
+        handleNextStep,
+    } = useSignUpForm(step, formData);
 
     const registerWithMask = useHookFormMask(register);
 
-    const onSubmit = (data: any) => {
-        console.log('Form data:', data);
-    };
-
-    const handleNextStep = async () => {
-        setStep((prev) => prev + 1);
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (step < 2) {
+            const canProceed = await handleNextStep();
+            if (canProceed) {
+                setStep((prev) => prev + 1);
+            }
+        } else {
+            await handleSubmit(e);
+        }
     };
 
     const handlePreviousStep = () => {
@@ -32,7 +39,7 @@ export function SignUpForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
+        <form onSubmit={onSubmit} className="space-y-4">
             {step === 0 && (
                 <>
                     <Input
@@ -42,13 +49,13 @@ export function SignUpForm() {
                             placeholder: dictionary.SignUp.namePlaceHolder,
                             ...register('fio'),
                         }}
-                        error={errors.fio?.message as string}
+                        error={formErrors.fio?.message as string}
                     />
                     <PhoneInput
                         label={dictionary.SignUp.phone}
-                        name='phone_number'
-                        error={errors.phone_number?.message as string}
-                        className='mb-4.5'
+                        name="phone_number"
+                        error={formErrors.phone_number?.message as string}
+                        className="mb-4.5"
                         placeholder={dictionary.SignUp.phonePlaceHolder}
                         registerWithMask={registerWithMask}
                     />
@@ -59,45 +66,25 @@ export function SignUpForm() {
                             placeholder: dictionary.SignUp.emailPlaceHolder,
                             ...register('email'),
                         }}
-                        error={errors.email?.message as string}
+                        error={formErrors.email?.message as string}
                     />
                 </>
             )}
             {step === 1 && (
                 <>
-                    <div>
-                        <div className='w-[300px] h-[200px] rounded-md border border-gray-200 shadow-sm flex items-center justify-center text-gray-500'>
-                            CAPTCHA IMAGE
-                        </div>
-                        <button
-                            type='button'
-                            className='text-sm text-blue-400 cursor-pointer hover:text-blue-500 mt-2'
-                        >
-                            {dictionary.common.generateNewCode}
-                        </button>
-                    </div>
                     <Input
-                        label={dictionary.SignUp.captcha}
+                        label="OTP"
                         inputProps={{
                             type: 'text',
-                            placeholder: dictionary.SignUp.captchaPlaceholder,
-                            ...register('captcha'),
+                            placeholder: "Введите OTP из письма",
+                            ...register('otp'),
                         }}
-                        error={errors.captcha?.message as string}
+                        error={formErrors.otp?.message as string}
                     />
                 </>
             )}
             {step === 2 && (
                 <>
-                    <Input
-                        label={dictionary.SignUp.activationCode}
-                        inputProps={{
-                            type: 'text',
-                            placeholder: dictionary.SignUp.activationCodePlaceholder,
-                            ...register('activationCode'),
-                        }}
-                        error={errors.activationCode?.message as string}
-                    />
                     <Input
                         label={dictionary.SignUp.password}
                         inputProps={{
@@ -105,7 +92,7 @@ export function SignUpForm() {
                             placeholder: dictionary.SignUp.passwordPlaceHolder,
                             ...register('password'),
                         }}
-                        error={errors.password?.message as string}
+                        error={formErrors.password?.message as string}
                     />
                     <Input
                         label={dictionary.SignUp.confirmPassword}
@@ -114,26 +101,23 @@ export function SignUpForm() {
                             placeholder: dictionary.SignUp.confirmPassword,
                             ...register('confirmPassword'),
                         }}
-                        error={errors.confirmPassword?.message as string}
+                        error={formErrors.confirmPassword?.message as string}
                     />
                 </>
             )}
-            <div className='flex justify-between gap-4'>
+
+            <div className="flex justify-between gap-4">
                 {step > 0 && (
-                    <Button
-                        className='w-full rounded-lg'
-                        variant='outlined'
-                        type='button'
-                        onClick={handlePreviousStep}
-                    >
+                    <Button className="w-full rounded-lg" variant="outlined" onClick={handlePreviousStep}>
                         {dictionary.common.back}
                     </Button>
                 )}
                 <Button
-                    className='w-full rounded-lg'
-                    variant='primary'
-                    type={step < 2 ? 'button' : 'submit'}
-                    onClick={step < 2 ? handleNextStep : undefined}
+                    className="w-full rounded-lg"
+                    variant="primary"
+                    type="submit"
+                    disabled={isPending}
+                    isLoading={isPending}
                 >
                     {step < 2 ? dictionary.common.next : dictionary.SignUp.signUpButton}
                 </Button>

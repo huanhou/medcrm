@@ -1,74 +1,29 @@
 'use client';
 
-import { GenericTable } from '@/shared/ui';
+import { GenericTable, Loader } from '@/shared/ui';
 import { ROUTES } from '@/shared/constants/routs';
-import { useStaffTableColumns } from '../model/columns';
-import { useTableLogic } from '@/shared/ui';
-import { ColumnDef } from '@tanstack/react-table';
-import { Employee } from '@/entities/staff/types';
+import { useStaffTable } from '../model/use-staff-table';
+import { useDeleteStaffMutation } from '@/features/staff/model/staff-api';
 
 export const Table = () => {
-    const staticStaffList: Employee[] = [
-        {
-            id: '030213451',
-            fio: 'Азина',
-            email: 'example@gmail.com',
-            phone: '+77059046703',
-            address: 'Сайрам 14',
-            filial: 'FK',
-            role: 'Стажер',
-            status: 'Активный',
-        },
-        {
-            id: '030213452',
-            fio: 'Азина',
-            email: 'example@gmail.com',
-            phone: '+77059046703',
-            address: 'Сайрам 14',
-            filial: 'FK',
-            role: 'Стажер',
-            status: 'Не активный',
-        },
-        {
-            id: '030213453',
-            fio: 'Азина',
-            email: 'example@gmail.com',
-            phone: '+77059046703',
-            address: 'Сайрам 14',
-            filial: 'FK',
-            role: 'Стажер',
-            status: 'Активный',
-        },
-        {
-            id: '030213454',
-            fio: 'Азина',
-            email: 'example@gmail.com',
-            phone: '+77059046703',
-            address: 'Сайрам 14',
-            filial: 'FK',
-            role: 'Стажер',
-            status: 'Не активный',
-        },
-    ];
+    const { tableLogic, isLoading } = useStaffTable();
+    const deleteStaffMutation = useDeleteStaffMutation();
 
-    const columns = useStaffTableColumns();
-    const tableLogic = useTableLogic(staticStaffList, columns as ColumnDef<Employee>[]);
-
-    const handleDelete = (ids: string[]) => {
-        alert(`Удалены: ${ids.join(', ')} (только на клиенте)`);
-    };
+    if (isLoading) {
+        return <Loader />;
+    }
 
     return (
         <GenericTable
             tableLogic={tableLogic}
-            deleteMutation={{ mutate: handleDelete }}
+            deleteMutation={deleteStaffMutation}
             routeCreate={ROUTES.createStaff}
-            routeEdit={(id: string) => ROUTES.staffEdit(id)}
+            routeEdit={ROUTES.staffEdit}
             queryKey='staffList'
             entityType='staff'
-            defaultAllowCreate
-            defaultAllowEdit
-            defaultAllowDelete
+            createPermission='CREATE_STAFF'
+            editPermission='UPDATE_STAFF'
+            deletePermission='DELETE_STAFF'
         />
     );
 };

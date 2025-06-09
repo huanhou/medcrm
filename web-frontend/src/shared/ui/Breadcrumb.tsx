@@ -28,7 +28,7 @@ export const Breadcrumb = ({ pageName, isAuth = true }: BreadcrumbProps) => {
             <nav>
                 <ol className={clsx("flex", "items-center", "gap-2")}>
                     <li>
-                        <Link className={clsx("font-medium")} href="/web-frontend/public">
+                        <Link className={clsx("font-medium")} href="/">
                             {isAuth ? dictionary.pages.home : "MedCRM"} /
                         </Link>
                     </li>

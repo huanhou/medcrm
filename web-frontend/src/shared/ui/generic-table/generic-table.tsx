@@ -1,16 +1,7 @@
 'use client';
 
 import { FC, MouseEvent, useState } from 'react';
-import {
-    Button,
-    UISearch,
-    UITable,
-    UiLayout,
-    UiPagination,
-    ReusableModal,
-    Loader,
-    AlertError,
-} from '@/shared/ui';
+import { Button, UISearch, UITable, UiLayout, UiPagination, ReusableModal, Loader, AlertError } from '@/shared/ui';
 import { PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
@@ -18,6 +9,7 @@ import { queryClient } from '@/shared/api/query-client';
 import { useDictionary } from '@/shared/lib/hooks';
 import { ERROR_MESSAGE } from '@/shared/constants/errors';
 import { dictionaryMap } from './dictionary-map';
+import { usePermissions } from '@/shared/context/permission-context';
 
 type EntityType = keyof ReturnType<typeof dictionaryMap>;
 
@@ -32,6 +24,9 @@ interface GenericTableProps {
         message?: string;
     };
     entityType: EntityType;
+    createPermission?: string;
+    editPermission?: string;
+    deletePermission?: string;
     defaultAllowEdit?: boolean;
     defaultAllowCreate?: boolean;
     defaultAllowDelete?: boolean;
@@ -46,6 +41,9 @@ export const GenericTable: FC<GenericTableProps> = ({
                                                         queryKey,
                                                         modalTitles = {},
                                                         entityType = 'staff',
+                                                        createPermission,
+                                                        editPermission,
+                                                        deletePermission,
                                                         defaultAllowEdit = true,
                                                         defaultAllowCreate = true,
                                                         defaultAllowDelete = true,
@@ -53,53 +51,85 @@ export const GenericTable: FC<GenericTableProps> = ({
     const [modalOpen, setModalOpen] = useState(false);
     const router = useRouter();
     const { dictionary } = useDictionary();
+    const { hasPermission } = usePermissions();
     const { buttons, modal, successNotifications, errorNotifications } = dictionaryMap(dictionary)[entityType];
 
-    const canCreate = defaultAllowCreate;
-    const canEdit = defaultAllowEdit;
-    const canDelete = defaultAllowDelete;
+    const noPermissionMessage = 'У вас нет необходимых разрешений для выполнения этого действия';
+
+    const canCreate = !createPermission ? defaultAllowCreate : hasPermission(createPermission);
+    const canEdit = !editPermission ? defaultAllowEdit : hasPermission(editPermission);
+    const canDelete = !deletePermission ? defaultAllowDelete : hasPermission(deletePermission);
 
     const { isLoading, isError } = tableLogic;
 
-    if (isLoading) return <Loader />;
-    if (isError) return <AlertError title='' message='' />;
+    if (isLoading)
+        return (
+            <div>
+                <Loader />
+            </div>
+        );
+    if (isError)
+        return (
+            <div>
+                <AlertError title={''} message={''} />
+            </div>
+        );
 
     const selectedRows = tableLogic.table.getSelectedRowModel().rows;
-    const selectedIds = selectedRows.map((row: { original: { id: string } }) => row.original.id);
+    const selectedIds = selectedRows.map((row: { original: { id: any } }) => row.original.id);
 
     const handleRowClick = (event: MouseEvent<HTMLTableRowElement>, id: string) => {
         if ((event.target as HTMLElement).closest('.checkbox')) return;
+
         if (canEdit) {
             router.push(routeEdit(id));
+        } else {
+            toast.error(noPermissionMessage);
         }
     };
 
     const handleOpenModal = () => {
         if (selectedIds.length > 0 && canDelete) {
             setModalOpen(true);
+        } else if (selectedIds.length > 0 && !canDelete) {
+            toast.error(noPermissionMessage);
         }
     };
 
     const handleConfirmDelete = () => {
         if (!canDelete) {
-            setModalOpen(false);
+            toast.error(noPermissionMessage); // Show permission error if user doesn't have delete permission
+            setModalOpen(false); // Close modal
             return;
         }
 
+        // Gather the IDs of selected rows (for any entity type)
+        const selectedIds = selectedRows.map((row: { original: { id: number } }) => row.original.id);
+
+        // If no rows are selected, show an error
+        if (selectedIds.length === 0) {
+            toast.error("No items selected for deletion.");
+            setModalOpen(false); // Close modal
+            return;
+        }
+
+        // Call the delete mutation with the selected IDs (can be roles, staff, etc.)
         deleteMutation.mutate(selectedIds, {
             onSuccess: () => {
-                toast.success(successNotifications.deleteStaff);
-                queryClient.invalidateQueries({ queryKey: [queryKey] });
-                tableLogic.table.resetRowSelection();
+                toast.success(successNotifications.deleteItem);  // Success message is based on the entity
+                queryClient.invalidateQueries({ queryKey: [queryKey] }); // Invalidate queries after deletion
+                tableLogic.table.resetRowSelection();  // Reset row selection in table
             },
             onError: (error: any) => {
-                toast.error(errorNotifications.deleteStaff);
-                console.error(ERROR_MESSAGE.unknown, error);
+                toast.error(errorNotifications.deleteItem);  // Show error message
+                console.error(ERROR_MESSAGE.unknown, error); // Log error
             },
         });
 
-        setModalOpen(false);
+        setModalOpen(false); // Close modal after deletion
     };
+
+    const rowClickHandler = canEdit ? handleRowClick : () => toast.error(noPermissionMessage);
 
     return (
         <UiLayout>
@@ -122,6 +152,7 @@ export const GenericTable: FC<GenericTableProps> = ({
                             {buttons.addStaff}
                         </Button>
                     )}
+
                     {canDelete && (
                         <Button
                             startIcon={<TrashIcon className='size-6 text-gray-6' />}
@@ -136,7 +167,7 @@ export const GenericTable: FC<GenericTableProps> = ({
                 </div>
                 <UISearch onSearchChange={tableLogic.setGlobalFilter} />
             </div>
-            <UITable table={tableLogic.table} handleRowClick={handleRowClick} />
+            <UITable table={tableLogic.table} handleRowClick={rowClickHandler} />
             <UiPagination table={tableLogic.table} />
         </UiLayout>
     );

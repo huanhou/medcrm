@@ -1,0 +1,1 @@
+export { VisitReportTable } from './table';
